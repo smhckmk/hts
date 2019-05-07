@@ -21,5 +21,5 @@ namespace hts.Entity
             context.SaveChanges();
             base.Seed(context);
         }
-    }
+    }//jkcvbklfdsmvlşmfdv
 }
