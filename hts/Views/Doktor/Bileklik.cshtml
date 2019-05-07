@@ -1,7 +1,8 @@
-﻿
-@{
+﻿@model IEnumerable < hts.Entity.BileklikTb >
+    @{
     ViewBag.Title = "Bileklik";
 }
+
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
@@ -26,7 +27,7 @@
 
                     </div>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="#">Cıkıs</a>
                 </li>
@@ -54,31 +55,22 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Bileklik Id</th>
+                    <th scope="col">imalat tarihi</th>
+                    <th scope="col">verilebilme durumu</th>
+                    
                 </tr>
             </thead>
             <tbody>
+                @foreach (var i in Model)
+                {
                 <tr>
-                    <th>1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>mdo</td>
+                    <th>@i.Id</th>
+                    <td>@i.imalatTarihi</td>
+                    <td>@i.verilebilmeDurumu</td>
+                    
                 </tr>
-                <tr>
-                    <th>2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>fat</td>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>twitter</td>
-                </tr>
+                }
             </tbody>
         </table>
 

@@ -13,8 +13,8 @@ namespace hts.Entity
         public int boy { get; set; }
         public double yagOrani { get; set; }
         public double nabiz { get; set; }
-        public double konumY { get; set; }
-        public double konumX { get; set; }
+        public double? konumY { get; set; }
+        public double? konumX { get; set; }
         public string alerjikDurumlar { get; set; }
         public string ozelHastaliklar { get; set; }
         public double kanSekeri { get; set; }

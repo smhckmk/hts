@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hts.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace hts.Controllers
 {
     public class DoktorController : Controller
     {
+        private htsContext context = new htsContext();
         // GET: Doktor
         public ActionResult DoktorAnasayfa()
         {
@@ -15,7 +17,7 @@ namespace hts.Controllers
         }
         public ActionResult Bileklik()
         {
-            return View();
+            return View(context.Bileklikler.ToList());
         }
     }
 }

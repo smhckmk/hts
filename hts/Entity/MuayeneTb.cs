@@ -8,6 +8,7 @@ namespace hts.Entity
 {
     public class MuayeneTb
     {
+
         public int Id { get; set; }
         public double konumMaxX { get; set; }
         public double konumMaxY { get; set; }

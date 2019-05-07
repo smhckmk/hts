@@ -10,6 +10,7 @@ namespace hts.Entity
     {
         public htsContext():base("htsConnection")
         {
+            Database.SetInitializer(new DataInitiliazer());
            
         }
         public DbSet<AcilDurumTb> AcilDurumlar { get; set; }

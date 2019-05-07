@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,9 @@ namespace hts.Entity
 {
     public class YakinTb
     {
+        
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int yakinTc { get; set; }
         public string adSoyad { get; set; }
         public string telefon { get; set; }

@@ -130,7 +130,7 @@
     <Compile Include="Controllers\YakinController.cs" />
     <Compile Include="Entity\AcilDurumTb.cs" />
     <Compile Include="Entity\BileklikTb.cs" />
-    <Compile Include="Entity\DataInitializer.cs" />
+    <Compile Include="Entity\DataInitiliazer.cs" />
     <Compile Include="Entity\DoktorTb.cs" />
     <Compile Include="Entity\GuncelOlcumTb.cs" />
     <Compile Include="Entity\HastaDurumTb.cs" />

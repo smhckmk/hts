@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,7 @@ namespace hts.Entity
 {
     public class HastaneTb
     {
-        [Key]
+        [Key]     
         public int hastaneId { get; set; }
         public string hastaneAdi { get; set; }
         public string stoktakiBileklik { get; set; }
