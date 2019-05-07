@@ -1,0 +1,60 @@
+body {
+    background-color: antiquewhite;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.sliderx{
+    height: 500px;
+}
+.imagex{
+    height: 100%;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#menu{
+    height:50px;
+}
+.navbar
+{
+    background-color:burlywood;
+    margin-bottom: 10px;
+    
+}
+.sag
+{
+    margin-left: 32%;
+    margin-right: 32%;   
+}
+table
+{
+    
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.list-group
+{
+    margin-top: 60px;
+    background-color: aquamarine;
+    color: aquamarine;
+}
+

@@ -1,0 +1,186 @@
+﻿@model IEnumerable<hts.Entity.DoktorTb>
+@{
+    ViewBag.Title = "Anasayfa";
+}
+
+@foreach(var i in Model)
+{
+    <p>i.adSoyad</p>
+}
+<hr />
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="/Home/Anasayfa">Anasayfa</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    İslemler
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/Doktor/Bileklik">Bileklik</a>
+                    <a class="dropdown-item" href="">Calisan</a>
+                    <a class="dropdown-item" href="#">Hastane</a>
+                </div>
+            </li>
+            <li style="margin-top: 5px; margin-left: 350px;">Hastane Takip Sistemi</li>
+        </ul>
+        <form class="form-inline">
+            <div class="form-group mb-2">
+                <label for="kullaniciAdi" class="sr-only">KullanıcıAdi</label>
+                <input type="text" class="form-control" id="kullaniciAdi" placeholder="kullaniciAdi">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-info mb-2">giris</button>
+        </form>
+    </div>
+</nav>
+<div class="row">
+    <div class="col-md-3">
+        <br />
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Haberler</div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Dünya Sağlık Örgütü</h5>
+                <p class="card-text">Dünya nüfusundaki artış ve buna bağlı olarak doğal yöntemlerden...</p>
+            </div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Bu besinler saç dökülmesini önlüyor</h5>
+                <p class="card-text">Özellikle protein, demir ve diğer besin öğelerinden oluşan ...</p>
+            </div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Bu Kanser türleri tarih oluyor</h5>
+                <p class="card-text">Vücudun kendi bağışıklık hücrelerinin kanser tedavisinde kullanılabilmesi... </p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+        <br />
+        <div id="slider3" class="carousel slide carousel-fade">
+            <ol class="carousel-indicators">
+                <li data-target="#slider3" data-slide-to="0" class="active"></li>
+                <li data-target="#slider3" data-slide-to="1"></li>
+                <li data-target="#slider3" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active sliderx">
+                    <img class="d-block w-100 imagex" src="~/bitirme/img/hastanee.jpg" alt="">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><b> Hasta Takip Sistemi</b></h5>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="carousel-item sliderx">
+                    <img class="d-block w-100 imagex" src="~/bitirme/img/uzmanekip.jpg" alt="">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><b> Uzman Doktorlar</b></h5>
+                        <p></p>
+                    </div>
+                </div>
+                <div class="carousel-item sliderx">
+                    <img class="d-block w-100 imagex" src="~/bitirme/img/hastatakip.jpg" alt="">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><b>Hasta İle Anlık Haberleşme</b></h5>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <a href="#slider3" class="carousel-control-prev" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a href="#slider3" class="carousel-control-next" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <br />
+        <div class="card border-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Duyurular</div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Sağlık Sektöründe Teknoloji ve İletişim</h5>
+                <p class="card-text">Yaşam için hayati unsurlar arasında teknoloji ve iletişim yer alıyor.</p>
+            </div>
+            <div class="card-body text-success">
+                <h5 class="card-title">Uzaktan teşhis</h5>
+                <p class="card-text">Evde tek başına kalan yaşlılar veya kronik hastalara müdahale edebilmek gerektiğinde doktorlar, uzaktan hasta takip sistemleri</p>
+            </div>
+            <div class="card-body text-success">
+                <h5 class="card-title">İleri Sağlık Teknolojileri</h5>
+                <p class="card-text">Sağlık hizmetleri 2030'a kadar tamamen dijitalleşecek.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr />
+<center><p><b>HAKKIMIZDA</b></p></center>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Misyonumuz</div>
+            <div class="card-body">
+                <h5 class="card-title">Akıllı Hasta Takip Sistemi</h5>
+                <p class="card-text">Sağlık alanında ulusal ve uluslararası belgelerdeki hedeflerimize ulaşabilmek ve ihtiyaç duyulan ülkelere insani sağlık yardımı sağlamak amacıyla, ilgili tüm iç ve dış paydaşlarla planlama, koordinasyon ve işbirliği içerisinde insan odaklı, sürdürülebilir sağlık hizmeti verilmesine azami katkıda bulunmaktır.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Şubelerimiz</div>
+            <div class="card-body">
+                <br />
+                <p class="card-text">Barbaros Mahallesi, Bülten Sk. No:44, 06700 Çankaya/Ankara <br />(0312) 426 14 50<br /><br /> Çamçeşme mahallesi, Elçi sokağı No:13, 34899 Pendik/İstanbul<br /> (0216) 483 11 87 <br /><br /> Mah., Anadolu Cd. No: 382, 35520 Serinkuyu -Karşıyaka / İzmir<br /> (0232) 366 88 88<br /><br /></p>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">Hizmetler</div>
+            <div class="card-body">
+                <br />
+                <br />
+                <br />
+                <h5 class="card-title">Evde Anlık Hasta Takip</h5>
+                <h5 class="card-title">Konuma Göre Bildirim</h5>
+                <h5 class="card-title">Nabız</h5>
+                <h5 class="card-title">Sıcaklık</h5>
+                <br />
+                <br />
+                <br />
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info mb-3" style="max-width: 18rem; padding-bottom: 40px;">
+            <div class="card-header">iletişim</div>
+            <div class="card-body">
+                <br />
+                <p>Adres</p>
+                <p class="card-text">Mevlana Mah. Turgut Özal Cad. Papatya Apt. 10.Kat No:38 <br />Talas/KAYSERİ 0312 657 87 32</p>
+                <br />
+                <p>Eposta</p>
+                <p>semihcakmak7126@gmail.com</p>
+                <p></p>
+                <br />
+            </div>
+        </div>
+    </div>
+
+</div>
+
