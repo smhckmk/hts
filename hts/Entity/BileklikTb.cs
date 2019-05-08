@@ -10,10 +10,15 @@ namespace hts.Entity
     {
         
         public int Id { get; set; }
-        public DateTime imalatTarihi { get; set; }
+        public string imalatTarihi { get; set; }
         public Boolean verilebilmeDurumu { get; set; }
         public int? HastaTbhastaTc { get; set; }
 
         public HastaTb hastaTb { get; set; }
+
+        public BileklikTb()
+        {
+            verilebilmeDurumu = true;
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace hts.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int hastaTc { get; set; }
+
         public string adSoyad { get; set; }
         public int telefon { get; set; }
         public string adres { get; set; }

@@ -1,0 +1,42 @@
+﻿@model hts.Entity.BileklikTb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BileklikTb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hastaTb.adSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.imalatTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imalatTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.verilebilmeDurumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.verilebilmeDurumu)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

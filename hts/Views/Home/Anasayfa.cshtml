@@ -1,10 +1,6 @@
-﻿@model IEnumerable<hts.Entity.DoktorTb>
+﻿@model IEnumerable<hts.Models.HomeAnasayfa>
 @{
     ViewBag.Title = "Anasayfa";
-}
-@foreach(var i in Model)
-{
-    <p>@i.adSoyad</p>
 }
 
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -125,61 +121,52 @@
 
 <hr />
 <center><p><b>HAKKIMIZDA</b></p></center>
-<div class="row">
-    <div class="col-md-3">
-        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-            <div class="card-header">Misyonumuz</div>
-            <div class="card-body">
-                <h5 class="card-title">Akıllı Hasta Takip Sistemi</h5>
-                <p class="card-text">Sağlık alanında ulusal ve uluslararası belgelerdeki hedeflerimize ulaşabilmek ve ihtiyaç duyulan ülkelere insani sağlık yardımı sağlamak amacıyla, ilgili tüm iç ve dış paydaşlarla planlama, koordinasyon ve işbirliği içerisinde insan odaklı, sürdürülebilir sağlık hizmeti verilmesine azami katkıda bulunmaktır.</p>
+@foreach (var i in Model)
+{
+
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Misyonumuz</div>
+                <div class="card-body">
+                   <br />
+                    <p>@i.misyon</p>
+                    <br />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-            <div class="card-header">Şubelerimiz</div>
-            <div class="card-body">
-                <br />
-                <p class="card-text">Barbaros Mahallesi, Bülten Sk. No:44, 06700 Çankaya/Ankara <br />(0312) 426 14 50<br /><br /> Çamçeşme mahallesi, Elçi sokağı No:13, 34899 Pendik/İstanbul<br /> (0216) 483 11 87 <br /><br /> Mah., Anadolu Cd. No: 382, 35520 Serinkuyu -Karşıyaka / İzmir<br /> (0232) 366 88 88<br /><br /></p>
-
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Şubelerimiz</div>
+                <div class="card-body">
+                   <br />
+                    <p>@i.subeler</p>
+                    <br />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-            <div class="card-header">Hizmetler</div>
-            <div class="card-body">
-                <br />
-                <br />
-                <br />
-                <h5 class="card-title">Evde Anlık Hasta Takip</h5>
-                <h5 class="card-title">Konuma Göre Bildirim</h5>
-                <h5 class="card-title">Nabız</h5>
-                <h5 class="card-title">Sıcaklık</h5>
-                <br />
-                <br />
-                <br />
-
-
-
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                <div class="card-header">Hizmetler</div>
+                <div class="card-body">
+                    <br />
+                    <p>@i.hizmetler</p>
+                    <br />
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-info mb-3" style="max-width: 18rem; padding-bottom: 40px;">
-            <div class="card-header">iletişim</div>
-            <div class="card-body">
-                <br />
-                <p>Adres</p>
-                <p class="card-text">Mevlana Mah. Turgut Özal Cad. Papatya Apt. 10.Kat No:38 <br />Talas/KAYSERİ 0312 657 87 32</p>
-                <br />
-                <p>Eposta</p>
-                <p>semihcakmak7126@gmail.com</p>
-                <p></p>
-                <br />
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3" style="max-width: 18rem; ">
+                <div class="card-header">iletişim</div>
+                <div class="card-body">
+                   <br />                  
+                    <p>@i.iletisim</p>
+                    <br />
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>
+}
 

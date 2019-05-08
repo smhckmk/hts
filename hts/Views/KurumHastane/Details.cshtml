@@ -1,0 +1,58 @@
+﻿@model hts.Entity.HastaneTb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HastaneTb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.kurumTb.kurumAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kurumTb.kurumAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hastaneAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hastaneAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stoktakiBileklik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stoktakiBileklik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adres)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.hastaneId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

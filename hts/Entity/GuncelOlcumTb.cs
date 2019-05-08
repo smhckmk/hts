@@ -8,7 +8,7 @@ namespace hts.Entity
     public class GuncelOlcumTb
     {
         public int Id { get; set; }
-        public DateTime sonOlcumTarihi { get; set; }
+        public string sonOlcumTarihi { get; set; }
         public double guncelKonumX { get; set; }
         public double guncelKonumY { get; set; }
         public double guncelSicaklik { get; set; }

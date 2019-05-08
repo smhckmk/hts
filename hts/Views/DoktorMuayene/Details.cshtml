@@ -1,0 +1,90 @@
+﻿@model hts.Entity.MuayeneTb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MuayeneTb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hastaTb.adSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konumMaxX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konumMaxX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konumMaxY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konumMaxY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nabizMax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nabizMax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nabizMin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nabizMin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sicaklikOlcumSikligi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sicaklikOlcumSikligi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nabizOlcumSikligi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nabizOlcumSikligi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konumOlcumSikligi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konumOlcumSikligi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bildirimSikligi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bildirimSikligi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
