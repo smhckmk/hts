@@ -155,7 +155,6 @@
     <Content Include="Web.config" />
     <Content Include="Views\Hastane\HastaneAnasayfa.cshtml" />
     <Content Include="Views\Doktor\DoktorAnasayfa.cshtml" />
-    <Content Include="Views\Yakin\AnasayfaGiris.cshtml" />
     <Content Include="Views\Doktor\Bileklik.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -165,13 +164,14 @@
     <Compile Include="Controllers\DoktorController.cs" />
     <Compile Include="Controllers\DoktorMuayeneController.cs" />
     <Compile Include="Controllers\HastaneController.cs" />
+    <Compile Include="Controllers\HastaneDoktorController.cs" />
     <Compile Include="Controllers\HastaneHastaController.cs" />
+    <Compile Include="Controllers\HastaneYakinController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KurumBileklikController.cs" />
     <Compile Include="Controllers\KurumDoktorController.cs" />
     <Compile Include="Controllers\KurumHastaneController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
-    <Compile Include="Controllers\YakinController.cs" />
     <Compile Include="Entity\AcilDurumTb.cs" />
     <Compile Include="Entity\BileklikTb.cs" />
     <Compile Include="Entity\DataInitiliazer.cs" />
@@ -234,6 +234,14 @@
     <Content Include="Views\KurumDoktor\Index.cshtml" />
     <Content Include="Views\DoktorBileklik\Edit.cshtml" />
     <Content Include="Views\DoktorBileklik\Index.cshtml" />
+    <Content Include="Views\HastaneDoktor\Delete.cshtml" />
+    <Content Include="Views\HastaneDoktor\Edit.cshtml" />
+    <Content Include="Views\HastaneDoktor\Index.cshtml" />
+    <Content Include="Views\HastaneYakin\Create.cshtml" />
+    <Content Include="Views\HastaneYakin\Delete.cshtml" />
+    <Content Include="Views\HastaneYakin\Details.cshtml" />
+    <Content Include="Views\HastaneYakin\Edit.cshtml" />
+    <Content Include="Views\HastaneYakin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

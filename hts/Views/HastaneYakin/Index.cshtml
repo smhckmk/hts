@@ -1,0 +1,57 @@
+﻿@model IEnumerable<hts.Entity.YakinTb>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.doktorTb.adSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HastaTbhastaTc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.doktorTb.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HastaTbhastaTc)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.yakinTc }) |
+            @Html.ActionLink("Details", "Details", new { id=item.yakinTc }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.yakinTc })
+        </td>
+    </tr>
+}
+
+</table>

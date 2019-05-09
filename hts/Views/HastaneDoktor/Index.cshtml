@@ -1,0 +1,65 @@
+﻿@model IEnumerable<hts.Entity.DoktorTb>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.uzmanlikTb.uzmanlikAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.toplamBileklikSayisi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kontrolundekiBileklikSayisi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.uzmanlikTb.uzmanlikAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.toplamBileklikSayisi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kontrolundekiBileklikSayisi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.doktorTc })
+          
+        </td>
+    </tr>
+}
+
+</table>
