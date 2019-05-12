@@ -10,6 +10,7 @@ using hts.Entity;
 
 namespace hts.Controllers
 {
+   
     public class DoktorBileklikController : Controller
     {
         private htsContext db = new htsContext();

@@ -1,0 +1,66 @@
+﻿@model hts.Models.YakinHastaGuncelOlcum
+@{
+    ViewBag.Title = "HastaGuncelDurum";
+    Layout = "/Views/Shared/YakinLayout.cshtml";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            AdSoyad
+        </th>
+        <th>
+            x
+        </th>
+        <th>
+            y
+        </th>
+        <th>
+            Sıcaklık
+        </th>
+        <th>
+            nabız
+        </th>
+        <th>
+            zaman
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var yakin in Model.yakin)
+    {
+        foreach (var hasta in Model.hastalar)
+        {
+            foreach (var guncelDurum in Model.guncelOlcum)
+            {
+
+
+                if (guncelDurum.HastaTbhastaTc == hasta.hastaTc && yakin.HastaTbhastaTc == guncelDurum.HastaTbhastaTc)
+                {
+                    <tr>
+                        <td>
+                            @hasta.adSoyad
+                        </td>
+                        <td>
+                            @guncelDurum.guncelKonumX
+                        </td>
+                        <td>
+                            @guncelDurum.guncelKonumY
+                        </td>
+                        <td>
+                            @guncelDurum.guncelSicaklik
+                        </td>
+                        <td>
+                            @guncelDurum.guncelNabiz
+                        </td>
+                        <td>
+                            @guncelDurum.sonOlcumTarihi
+                        </td>
+
+                    </tr>
+                }
+            }
+        }
+    }
+
+</table>

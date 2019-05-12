@@ -1,0 +1,91 @@
+﻿@model hts.Models.DoktorHastaAcilDurum
+@{
+    ViewBag.Title = "Anasayfa";
+    Layout = "/Views/Shared/DoktorLayout.cshtml";
+}
+
+<div class="container mt-3">
+
+    <div class="row">
+        <div class="col-md-3">
+            <img src="~/bitirme/img/avatar.png" alt="" class="rounded-circle" style="height:150px;">
+            <h3 style="margin-left:50px;">@ViewBag.adSoyad</h3>
+            
+        </div>
+        <div class="col-md-9">
+            <div class="mt-3">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Ad Soyad
+                            </th>
+                            <th>
+                                aKonumX
+                            </th>
+                            <th>
+                                aKonumY
+                            </th>
+                            <th>
+                                aSicaklik
+                            </th>
+                            <th>
+                                aNabiz
+                            </th>
+                            <th>
+                                olcumZamani
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var doktor in Model.doktorlar)
+                        {
+                            foreach (var hasta in Model.hastalar)
+                            {
+                                foreach (var acilDurum in Model.acilDurumlar)
+                                {
+
+
+                                    if (doktor.doktorTc == hasta.DoktorTbdoktorTc && hasta.hastaTc == acilDurum.HastaTbhastaTc)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @hasta.adSoyad
+                                            </td>
+                                            <td>
+                                                @acilDurum.aKonumX
+                                            </td>
+                                            <td>
+                                                @acilDurum.aKonumY
+                                            </td>
+                                            <td>
+                                                @acilDurum.aSicaklik
+                                            </td>
+                                            <td>
+                                                @acilDurum.aNabiz
+                                            </td>
+                                            <td>
+                                                @acilDurum.olcumZamani
+                                            </td>
+                                        </tr>
+                                    }
+                                    else
+                                    {
+                                        <tr></tr>
+                                    }
+                                }
+                            }
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+

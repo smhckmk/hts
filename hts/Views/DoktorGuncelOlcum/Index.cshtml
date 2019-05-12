@@ -1,0 +1,63 @@
+﻿@model IEnumerable<hts.Entity.GuncelOlcumTb>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sonOlcumTarihi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guncelKonumX)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guncelKonumY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guncelSicaklik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.guncelNabiz)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.hastaTb.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sonOlcumTarihi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guncelKonumX)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guncelKonumY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guncelSicaklik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.guncelNabiz)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

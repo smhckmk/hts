@@ -1,0 +1,82 @@
+﻿@model hts.Models.DoktorHastaGuncelDurum
+    @{
+        ViewBag.Title = "GuncelDurum";
+        Layout = "~/Views/Shared/DoktorLayout.cshtml";
+    }
+
+    <h2>GuncelDurum</h2>
+
+    <div class="container mt-3">
+
+        <div class="mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            Ad Soyad
+                        </th>
+                        <th>
+                            aKonumX
+                        </th>
+                        <th>
+                            aKonumY
+                        </th>
+                        <th>
+                            aSicaklik
+                        </th>
+                        <th>
+                            aNabiz
+                        </th>
+                        <th>
+                            olcumZamani
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var doktor in Model.doktorlar)
+                    {
+                        foreach (var hasta in Model.hastalar)
+                        {
+                            foreach (var guncelDurum in Model.guncelOlcumler)
+                            {
+
+
+                                if (doktor.doktorTc == hasta.DoktorTbdoktorTc && hasta.hastaTc == guncelDurum.HastaTbhastaTc)
+                                {
+                                    <tr>
+                                        <td>
+                                            @hasta.adSoyad
+                                        </td>
+                                        <td>
+                                            @guncelDurum.guncelKonumX
+                                        </td>
+                                        <td>
+                                            @guncelDurum.guncelKonumY
+                                        </td>
+                                        <td>
+                                            @guncelDurum.guncelSicaklik
+                                        </td>
+                                        <td>
+                                            @guncelDurum.guncelNabiz
+                                        </td>
+                                        <td>
+                                            @guncelDurum.sonOlcumTarihi
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    <tr></tr>
+                                }
+                            }
+                        }
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>

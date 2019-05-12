@@ -152,26 +152,32 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Hastane\HastaneAnasayfa.cshtml" />
-    <Content Include="Views\Doktor\DoktorAnasayfa.cshtml" />
-    <Content Include="Views\Doktor\Bileklik.cshtml" />
+    <Content Include="Views\Doktor\Anasayfa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup1.cs" />
+    <Compile Include="Controllers\DoktorAcilDurumController.cs" />
     <Compile Include="Controllers\DoktorBileklikController.cs" />
     <Compile Include="Controllers\DoktorController.cs" />
+    <Compile Include="Controllers\DoktorGuncelOlcumController.cs" />
     <Compile Include="Controllers\DoktorMuayeneController.cs" />
     <Compile Include="Controllers\HastaneController.cs" />
     <Compile Include="Controllers\HastaneDoktorController.cs" />
     <Compile Include="Controllers\HastaneHastaController.cs" />
+    <Compile Include="Controllers\HastaneHastaDurumController.cs" />
     <Compile Include="Controllers\HastaneYakinController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KurumBileklikController.cs" />
+    <Compile Include="Controllers\KurumController.cs" />
     <Compile Include="Controllers\KurumDoktorController.cs" />
     <Compile Include="Controllers\KurumHastaneController.cs" />
-    <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\YakinAcilDurumController.cs" />
+    <Compile Include="Controllers\YakinController.cs" />
     <Compile Include="Entity\AcilDurumTb.cs" />
     <Compile Include="Entity\BileklikTb.cs" />
     <Compile Include="Entity\DataInitiliazer.cs" />
@@ -188,16 +194,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Identity\ApplicationRole.cs" />
-    <Compile Include="Identity\ApplicationUser.cs" />
-    <Compile Include="Identity\IdentityDataContext.cs" />
-    <Compile Include="Models\Giris.cs" />
+    <Compile Include="Models\DoktorHastaAcilDurum.cs" />
+    <Compile Include="Models\DoktorHastaGuncelDurum.cs" />
+    <Compile Include="Models\DoktorHastaMuayene.cs" />
+    <Compile Include="Models\YakinHastaAcilDurum.cs" />
     <Compile Include="Models\HomeAnasayfa.cs" />
-    <Compile Include="Models\KayitOl.cs" />
+    <Compile Include="Models\YakinHastaGuncelOlcum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -206,7 +214,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Anasayfa.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Profil\KayitOl.cshtml" />
     <Content Include="Views\DoktorMuayene\Create.cshtml" />
     <Content Include="Views\DoktorMuayene\Delete.cshtml" />
     <Content Include="Views\DoktorMuayene\Details.cshtml" />
@@ -242,6 +249,74 @@
     <Content Include="Views\HastaneYakin\Details.cshtml" />
     <Content Include="Views\HastaneYakin\Edit.cshtml" />
     <Content Include="Views\HastaneYakin\Index.cshtml" />
+    <Content Include="Views\HastaneHastaDurum\Create.cshtml" />
+    <Content Include="Views\HastaneHastaDurum\Delete.cshtml" />
+    <Content Include="Views\HastaneHastaDurum\Details.cshtml" />
+    <Content Include="Views\HastaneHastaDurum\Edit.cshtml" />
+    <Content Include="Views\HastaneHastaDurum\Index.cshtml" />
+    <Content Include="Views\Doktor\DoktorGiris.cshtml" />
+    <Content Include="Views\DoktorAcilDurum\Create.cshtml" />
+    <Content Include="Views\DoktorAcilDurum\Delete.cshtml" />
+    <Content Include="Views\DoktorAcilDurum\Details.cshtml" />
+    <Content Include="Views\DoktorAcilDurum\Edit.cshtml" />
+    <Content Include="Views\DoktorAcilDurum\Index.cshtml" />
+    <Content Include="Views\DoktorGuncelOlcum\Create.cshtml" />
+    <Content Include="Views\DoktorGuncelOlcum\Delete.cshtml" />
+    <Content Include="Views\DoktorGuncelOlcum\Details.cshtml" />
+    <Content Include="Views\DoktorGuncelOlcum\Edit.cshtml" />
+    <Content Include="Views\DoktorGuncelOlcum\Index.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Create.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Delete.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Details.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Edit.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Index.cshtml" />
+    <Content Include="Views\YakinAcilDurum\Giris.cshtml" />
+    <Content Include="Views\Hastane\HastaneGiris.cshtml" />
+    <Content Include="Views\Yakin\Anasayfa.cshtml" />
+    <Content Include="Views\Yakin\Giris.cshtml" />
+    <Content Include="Views\Kurum\KurumAnasayfa.cshtml" />
+    <Content Include="Views\Kurum\KurumGiris.cshtml" />
+    <Content Include="Views\Doktor\Bileklik.cshtml" />
+    <Content Include="Views\DoktorHasta\Create.cshtml" />
+    <Content Include="Views\DoktorHasta\Delete.cshtml" />
+    <Content Include="Views\DoktorHasta\Details.cshtml" />
+    <Content Include="Views\DoktorHasta\Edit.cshtml" />
+    <Content Include="Views\DoktorHasta\Index.cshtml" />
+    <Content Include="Views\Yakin\HastaGuncelDurum.cshtml" />
+    <Content Include="Views\Kurum\BileklikSilme.cshtml" />
+    <Content Include="Views\Kurum\BileklikDuzenle.cshtml" />
+    <Content Include="Views\Kurum\BileklikOlusturma.cshtml" />
+    <Content Include="Views\Kurum\DoktorSil.cshtml" />
+    <Content Include="Views\Kurum\DoktorOlusturma.cshtml" />
+    <Content Include="Views\Kurum\DoktorAnasayfa.cshtml" />
+    <Content Include="Views\Kurum\DoktorDuzenle.cshtml" />
+    <Content Include="Views\Shared\KurumLayout.cshtml" />
+    <Content Include="Views\Kurum\HastaneAnasayfa.cshtml" />
+    <Content Include="Views\Kurum\HastaneSilme.cshtml" />
+    <Content Include="Views\Kurum\HastaneOlusturma.cshtml" />
+    <Content Include="Views\Kurum\HastaneDuzenle.cshtml" />
+    <Content Include="Views\Shared\HastaneLayout.cshtml" />
+    <Content Include="Views\Hastane\DoktorDuzenle.cshtml" />
+    <Content Include="Views\Hastane\HastaDurumAnasayfa.cshtml" />
+    <Content Include="Views\Hastane\HastaDurumOlusturma.cshtml" />
+    <Content Include="Views\Hastane\HastaDurumDuzenleme.cshtml" />
+    <Content Include="Views\Hastane\HastaDurumSilme.cshtml" />
+    <Content Include="Views\Hastane\HastaAnasayfa.cshtml" />
+    <Content Include="Views\Hastane\HastaOlusturma.cshtml" />
+    <Content Include="Views\Hastane\HastaDuzenleme.cshtml" />
+    <Content Include="Views\Hastane\HastaSilme.cshtml" />
+    <Content Include="Views\Hastane\YakinAnasayfa.cshtml" />
+    <Content Include="Views\Hastane\YakinOlusturma.cshtml" />
+    <Content Include="Views\Hastane\YakinDuzenleme.cshtml" />
+    <Content Include="Views\Hastane\YakinSilme.cshtml" />
+    <Content Include="Views\Shared\YakinLayout.cshtml" />
+    <Content Include="Views\Shared\DoktorLayout.cshtml" />
+    <Content Include="Views\Doktor\GuncelDurum.cshtml" />
+    <Content Include="Views\Doktor\HastaMuayene.cshtml" />
+    <Content Include="Views\Doktor\HastaMuayeneOlusturma.cshtml" />
+    <Content Include="Views\Doktor\HastaMuayeneDuzenleme.cshtml" />
+    <Content Include="Views\Doktor\HastaMuayeneSilme.cshtml" />
+    <Content Include="Views\Doktor\BileklikDuzenle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

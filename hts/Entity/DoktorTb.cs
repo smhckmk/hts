@@ -18,6 +18,8 @@ namespace hts.Entity
         public int? maas { get; set; }
         public int? toplamBileklikSayisi { get; set; }
         public int? kontrolundekiBileklikSayisi { get; set; }
+        public string kullaniciAdi { get; set; }
+        public string sifre { get; set; }
         public int? UzmanlikTbId { get; set; }
 
         public HastaneTb hastaneTb { get; set; }

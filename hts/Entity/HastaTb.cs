@@ -18,6 +18,7 @@ namespace hts.Entity
         public int telefon { get; set; }
         public string adres { get; set; }
         public string hastaligi { get; set; }
+        public string parmakIzi { get; set; }
         public int DoktorTbdoktorTc { get; set; }
 
 

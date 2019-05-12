@@ -9,8 +9,7 @@ namespace hts.Entity
     public class DataInitiliazer:DropCreateDatabaseIfModelChanges<htsContext>
     {
         protected override void Seed(htsContext context)
-        {
-            
+        {           
             base.Seed(context);
         }
     }

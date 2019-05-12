@@ -15,6 +15,8 @@ namespace hts.Entity
         public string subeler { get; set; }
         public string hizmetler { get; set; }
         public string iletisim { get; set; }
+        public string kullaniciAdi { get; set; }
+        public string sifre { get; set; }
 
 
         public List<HastaneTb> hastaneler { get; set; }

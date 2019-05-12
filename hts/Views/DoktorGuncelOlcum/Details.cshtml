@@ -1,0 +1,66 @@
+﻿@model hts.Entity.GuncelOlcumTb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GuncelOlcumTb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hastaTb.adSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sonOlcumTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sonOlcumTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guncelKonumX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guncelKonumX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guncelKonumY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guncelKonumY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guncelSicaklik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guncelSicaklik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.guncelNabiz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guncelNabiz)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

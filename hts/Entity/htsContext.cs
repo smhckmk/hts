@@ -13,6 +13,7 @@ namespace hts.Entity
             Database.SetInitializer(new DataInitiliazer());
            
         }
+       
         public DbSet<AcilDurumTb> AcilDurumlar { get; set; }
         public DbSet<BileklikTb> Bileklikler { get; set; }
         public DbSet<DoktorTb> Doktorlar { get; set; }
@@ -24,6 +25,7 @@ namespace hts.Entity
         public DbSet<MuayeneTb> Muayeneler { get; set; }
         public DbSet<YakinTb> Yakinlar { get; set; }
         public DbSet<UzmanlikTb> Uzmanlar { get; set; }
+       
 
     }
 }

@@ -1,0 +1,110 @@
+﻿@model hts.Models.DoktorHastaMuayene
+@{
+    ViewBag.Title = "HastaMuayene";
+    Layout = "~/Views/Shared/DoktorLayout.cshtml";
+}
+
+<h2>HastaMuayene</h2>
+
+<div class="container mt-3">
+
+    <div class="mt-3">
+        <a href="@Url.Action("HastaMuayeneOlusturma","Doktor",new { did=ViewBag.id})">yeni ekle</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        Ad Soyad
+                    </th>
+                    <th>
+                        KonumMaxX
+                    </th>
+                    <th>
+                        KonumMaxY
+                    </th>
+                    <th>
+                        nabizMax
+                    </th>
+                    <th>
+                        nabizMin
+                    </th>
+                    <th>
+                        sicaklikOlcumSikligi
+                    </th>
+                    <th>
+                        nabizOlcumSikligi
+                    </th>
+                    <th>
+                        konumOlcumSikligi
+                    </th>
+                    <th>
+                        bildirimSikligi
+                    </th>
+                    <th>
+
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var doktor in Model.doktorlar)
+                {
+                    foreach (var hasta in Model.hastalar)
+                    {
+                        foreach (var muayene in Model.muayeneler)
+                        {
+
+
+                            if (doktor.doktorTc == hasta.DoktorTbdoktorTc && hasta.hastaTc == muayene.HastaTbhastaTc)
+                            {
+                                <tr>
+                                    <td>
+                                        @hasta.adSoyad
+                                    </td>
+                                    <td>
+                                        @muayene.konumMaxX
+                                    </td>
+                                    <td>
+                                        @muayene.konumMaxY
+                                    </td>
+                                    <td>
+                                        @muayene.nabizMax
+                                    </td>
+                                    <td>
+                                        @muayene.nabizMin
+                                    </td>
+                                    <td>
+                                        @muayene.sicaklikOlcumSikligi
+                                    </td>
+                                    <td>
+                                        @muayene.nabizOlcumSikligi
+                                    </td>
+                                    <td>
+                                        @muayene.konumOlcumSikligi
+                                    </td>
+                                    <td>
+                                        @muayene.bildirimSikligi
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("HastaMuayeneDuzenleme","Doktor",new { did=ViewBag.id})">duzenle</a>
+                                        <a href="@Url.Action("HastaMuayeneSilme","Doktor",new { did=ViewBag.id})">sil</a>
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr></tr>
+                            }
+                        }
+                    }
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+

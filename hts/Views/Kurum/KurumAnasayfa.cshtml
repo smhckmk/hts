@@ -1,0 +1,41 @@
+﻿@model IEnumerable<hts.Entity.BileklikTb>
+@{
+    ViewBag.Title = "KurumLayout";
+    Layout = "/Views/Shared/KurumLayout.cshtml";
+}
+
+        @Html.ActionLink("yeni ekle", "BileklikOlusturma")
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.imalatTarihi)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.verilebilmeDurumu)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.imalatTarihi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.verilebilmeDurumu)
+                    </td>
+                    <td>
+                        @Html.ActionLink("duzenle", "BileklikDuzenle", new { id = item.Id }) |
+                        @Html.ActionLink("sil", "BileklikBileklikSil", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+
+        </table>

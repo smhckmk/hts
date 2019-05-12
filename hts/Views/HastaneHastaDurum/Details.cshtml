@@ -1,0 +1,106 @@
+﻿@model hts.Entity.HastaDurumTb
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HastaDurumTb</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hastaTb.adSoyad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.yas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.yas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kilo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kilo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.boy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.boy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.yagOrani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.yagOrani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nabiz)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nabiz)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konumY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konumY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.konumX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konumX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alerjikDurumlar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alerjikDurumlar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ozelHastaliklar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ozelHastaliklar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kanSekeri)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kanSekeri)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

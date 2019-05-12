@@ -9,8 +9,8 @@ namespace hts.Entity
     {
         public int Id { get; set; }
         public string sonOlcumTarihi { get; set; }
-        public double guncelKonumX { get; set; }
-        public double guncelKonumY { get; set; }
+        public string guncelKonumX { get; set; }
+        public string guncelKonumY { get; set; }
         public double guncelSicaklik { get; set; }
         public double guncelNabiz { get; set; }
         public int HastaTbhastaTc { get; set; }

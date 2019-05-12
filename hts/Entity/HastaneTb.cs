@@ -15,6 +15,8 @@ namespace hts.Entity
         public string stoktakiBileklik { get; set; }
         public string telefon { get; set; }
         public string adres { get; set; }
+        public string kullaniciAdi { get; set; }
+        public string sifre { get; set; }
         public int KurumTbkurumId { get; set; }
 
 

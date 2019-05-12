@@ -14,14 +14,14 @@ namespace hts.Controllers
     {
         private htsContext db = new htsContext();
 
-        // GET: DoktorMuayene
+        
         public ActionResult Index()
         {
             var muayeneler = db.Muayeneler.Include(m => m.hastaTb);
             return View(muayeneler.ToList());
         }
 
-        // GET: DoktorMuayene/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,16 +36,13 @@ namespace hts.Controllers
             return View(muayeneTb);
         }
 
-        // GET: DoktorMuayene/Create
+        
         public ActionResult Create()
         {
             ViewBag.HastaTbhastaTc = new SelectList(db.Hastalar, "hastaTc", "hastaTc");
             return View();
         }
-
-        // POST: DoktorMuayene/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,konumMaxX,konumMaxY,nabizMax,nabizMin,sicaklikOlcumSikligi,nabizOlcumSikligi,konumOlcumSikligi,bildirimSikligi,HastaTbhastaTc")] MuayeneTb muayeneTb)
@@ -117,6 +114,8 @@ namespace hts.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

@@ -25,8 +25,10 @@ namespace hts.Controllers
                     iletisim = i.iletisim.Length > 50 ? i.iletisim.Substring(0, 47) + "..." : i.iletisim,
                     subeler = i.subeler.Length > 50 ? i.subeler.Substring(0, 47) + "..." : i.subeler
 
+
                 }).ToList();
             return View(sorgu);
         }
+        
     }
 }

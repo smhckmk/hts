@@ -1,43 +1,8 @@
 ﻿@model IEnumerable<hts.Models.HomeAnasayfa>
 @{
     ViewBag.Title = "Anasayfa";
+    
 }
-
-<nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/Home/Anasayfa">Anasayfa</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    İslemler
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/Doktor/Bileklik">Bileklik</a>
-                    <a class="dropdown-item" href="">Calisan</a>
-                    <a class="dropdown-item" href="#">Hastane</a>
-                </div>
-            </li>
-            <li style="margin-top: 5px; margin-left: 350px;">Hastane Takip Sistemi</li>
-        </ul>
-        <form class="form-inline">
-            <div class="form-group mb-2">
-                <label for="kullaniciAdi" class="sr-only">KullanıcıAdi</label>
-                <input type="text" class="form-control" id="kullaniciAdi" placeholder="kullaniciAdi">
-            </div>
-            <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Password">
-            </div>
-            <button type="submit" class="btn btn-info mb-2">giris</button>
-        </form>
-    </div>
-</nav>
 <div class="row">
     <div class="col-md-3">
         <br />
@@ -118,12 +83,12 @@
 
     </div>
 </div>
+   
 
 <hr />
 <center><p><b>HAKKIMIZDA</b></p></center>
 @foreach (var i in Model)
 {
-
 
     <div class="row">
         <div class="col-md-3">

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Giris";
+}
+
+<h2>Giris</h2>
+@ViewBag.mesaj
+<div class="container">
+    <div class="row">
+        <div class="span12">
+            <form class="form-horizontal" action='' method="POST">
+                <fieldset>
+                    <div id="legend">
+                        <strong>Login</strong>
+                    </div>
+                    @using (Html.BeginForm("Giris", "YakinAcilDurum", FormMethod.Post))
+                    {
+                        <div class="control-group">
+
+                            <label class="control-label" for="username">Username</label>
+                            <div class="controls">
+                                <input type="text" id="username" name="kullaniciAdi" placeholder="" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                            <label class="control-label" for="password">Password</label>
+                            <div class="controls">
+                                <input type="password" id="password" name="sifre" placeholder="" class="input-xlarge">
+                            </div>
+                        </div>
+                        <div class="control-group">
+
+                            <div class="controls">
+                                <button class="btn btn-success" type="submit">Login</button>
+                            </div>
+                        </div>
+                    }
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

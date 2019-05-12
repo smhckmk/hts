@@ -8,8 +8,8 @@ namespace hts.Entity
     public class AcilDurumTb
     {
         public int Id { get; set; }
-        public double aKonumX { get; set; }
-        public double aKonumY { get; set; }
+        public string aKonumX { get; set; }
+        public string aKonumY { get; set; }
         public double aSicaklik { get; set; }
         public double aNabiz { get; set; }
         public string olcumZamani { get; set; }

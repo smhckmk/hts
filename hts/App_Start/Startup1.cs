@@ -17,7 +17,7 @@ namespace hts.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
                 AuthenticationType="ApplicationCookie",
-                LoginPath=new PathString("/Account/Login") //varsayılan action metot
+                LoginPath=new PathString("/Profil/Login") //varsayılan action metot
             });
                 
         }
