@@ -12,8 +12,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>HastaneTb</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.hastaneAdi, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -67,6 +65,3 @@
     @Html.ActionLink("Geri Dön", "HastaneAnasayfa")
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
