@@ -16,15 +16,20 @@ namespace hts.Entity
         public int? telefon { get; set; }
         public string adres { get; set; }
         public int? maas { get; set; }
-        public int? toplamBileklikSayisi { get; set; }
-        public int? kontrolundekiBileklikSayisi { get; set; }
+        public string mail { get; set; }
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
+
         public int? UzmanlikTbId { get; set; }
 
+        public List<PuanlamaTb> puanlar { get; set; }
         public HastaneTb hastaneTb { get; set; }
         public UzmanlikTb uzmanlikTb { get; set; }
         public List<YakinTb> yakinlar { get; set; }
         public List<HastaTb> hastalar { get; set; }
+        public List<YorumTb> yorumlar { get; set; }
+
+
+
     }
 }

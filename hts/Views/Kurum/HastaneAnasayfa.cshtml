@@ -4,13 +4,11 @@
     Layout = "~/Views/Shared/KurumLayout.cshtml";
 }
 
-<h2>HastaneAnasayfa</h2>
-
 
 <p>
-    @Html.ActionLink("yeni ekle", "HastaneOlusturma")
+    @Html.ActionLink("Hastane Ekle", "HastaneOlusturma", new { did = ViewBag.id }, new { @class = "btn btn-success btn-xs" })
 </p>
-<table class="table">
+<table class="table mt-3" style="color:darkcyan">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.kurumTb.kurumAdi)
@@ -49,8 +47,8 @@
                 @Html.DisplayFor(modelItem => item.adres)
             </td>
             <td>
-                @Html.ActionLink("duzenle", "HastaneDuzenle", new { id = item.hastaneId }) |
-                @Html.ActionLink("sil", "HastaneSilme", new { id = item.hastaneId })
+                @Html.ActionLink("Düzenle", "HastaneDuzenle", new { id = item.hastaneId }, new { @class = "btn btn-warning btn-xs" })
+                @Html.ActionLink("Sil", "HastaneSilme", new { id = item.hastaneId }, new { @class = "btn btn-danger btn-xs" })
             </td>
         </tr>
     }

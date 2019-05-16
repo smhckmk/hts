@@ -1,22 +1,22 @@
 ﻿
-@model IEnumerable<hts.Entity.BileklikTb>
+@model hts.Models.DoktorBileklikHasta
 @{
     ViewBag.Title = "Bileklik";
     Layout = "/Views/Shared/DoktorLayout.cshtml";
 }
 
-<table class="table table-striped">
+<table class="table table-striped" style="color:darkcyan">
     <thead>
-        <tr>
+        <tr >
             <th>
-                @Html.DisplayNameFor(model => model.Id)
+                ıd
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
+                ad soyad
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.verilebilmeDurumu)
+                verilebilme Durumu
             </th>
             <th></th>
         </tr>
@@ -24,25 +24,34 @@
     </thead>
     <tbody>
 
-        @foreach (var item in Model)
+        @foreach (var doktor in Model.doktorlar)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Id)
-                </td>
+            foreach (var hasta in Model.hastalar)
+            {
+                foreach (var bileklik in Model.bileklikler)
+                {
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.hastaTb.adSoyad)
-                </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.verilebilmeDurumu)
-                </td>
-                <td>
-                    @Html.ActionLink("duzenle", "BileklikDuzenle", new { id = item.Id }) |
-
-                </td>
-            </tr>
+                    if (doktor.doktorTc == hasta.DoktorTbdoktorTc && hasta.hastaTc == bileklik.HastaTbhastaTc)
+                    {
+                        <tr>
+                            <td>
+                                @bileklik.Id
+                            </td>
+                            <td>
+                                @hasta.adSoyad
+                            </td>
+                            <td>
+                                @bileklik.verilebilmeDurumu
+                            </td>
+                            <td>
+                               
+                                @Html.ActionLink("Düzenle", "BileklikDuzenle", new { id = bileklik.Id,did=doktor.doktorTc }, new { @class = "btn btn-warning btn-xs" })
+                            </td>
+                        </tr>
+                    }
+                }
+            }
         }
     </tbody>
 </table>

@@ -4,42 +4,32 @@
     Layout = "~/Views/Shared/DoktorLayout.cshtml";
 }
 
-<h2>HastaMuayene</h2>
+
 
 <div class="container mt-3">
-
+    <h2>Hasta Muayene</h2>
     <div class="mt-3">
-        <a href="@Url.Action("HastaMuayeneOlusturma","Doktor",new { did=ViewBag.id})">yeni ekle</a>
-        <table class="table table-striped">
+
+        @Html.ActionLink("Muayene Ekle", "HastaMuayeneOlusturma", new { did = ViewBag.id }, new { @class = "btn btn-warning btn-xs" })
+        <table class="table table-striped mt-2" style="color:darkcyan">
             <thead>
                 <tr>
                     <th>
-                        Ad Soyad
+                        Hasta Ad Soyad
                     </th>
                     <th>
-                        KonumMaxX
+                        Enlem
                     </th>
                     <th>
-                        KonumMaxY
+                        Boylam
                     </th>
                     <th>
-                        nabizMax
+                        Üst Nabız
                     </th>
                     <th>
-                        nabizMin
+                        Alt Nabız
                     </th>
-                    <th>
-                        sicaklikOlcumSikligi
-                    </th>
-                    <th>
-                        nabizOlcumSikligi
-                    </th>
-                    <th>
-                        konumOlcumSikligi
-                    </th>
-                    <th>
-                        bildirimSikligi
-                    </th>
+
                     <th>
 
                     </th>
@@ -75,20 +65,9 @@
                                         @muayene.nabizMin
                                     </td>
                                     <td>
-                                        @muayene.sicaklikOlcumSikligi
-                                    </td>
-                                    <td>
-                                        @muayene.nabizOlcumSikligi
-                                    </td>
-                                    <td>
-                                        @muayene.konumOlcumSikligi
-                                    </td>
-                                    <td>
-                                        @muayene.bildirimSikligi
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("HastaMuayeneDuzenleme","Doktor",new { did=ViewBag.id})">duzenle</a>
-                                        <a href="@Url.Action("HastaMuayeneSilme","Doktor",new { did=ViewBag.id})">sil</a>
+                                        @Html.ActionLink("Düzenle", "HastaMuayeneDuzenleme", new { did = doktor.doktorTc,id=hasta.hastaTc }, new { @class = "btn btn-success btn-xs" })
+                                        @Html.ActionLink("Sil", "HastaMuayeneSilme", new { did = ViewBag.id }, new { @class = "btn btn-success btn-xs" })
+
                                     </td>
                                 </tr>
                             }

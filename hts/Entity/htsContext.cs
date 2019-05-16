@@ -25,7 +25,11 @@ namespace hts.Entity
         public DbSet<MuayeneTb> Muayeneler { get; set; }
         public DbSet<YakinTb> Yakinlar { get; set; }
         public DbSet<UzmanlikTb> Uzmanlar { get; set; }
-       
+        public DbSet<PuanlamaTb> Puanlar { get; set; }
+        public DbSet<DoktorMesajTb> DoktorMesaj { get; set; }
+        public DbSet<YakinMesajTb> YakinMesaj { get; set; }
+        public DbSet<YorumTb> Yorumlar { get; set; }
+
 
     }
 }

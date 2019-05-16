@@ -4,13 +4,11 @@
     Layout = "~/Views/Shared/HastaneLayout.cshtml";
 }
 
-<h2>HastaDurumAnasayfa</h2>
-
-
 <p>
-    @Html.ActionLink("yeni ekle", "HastaDurumOlusturma")
+    @Html.ActionLink("Hasta Bilgileri Ekle", "HastaDurumOlusturma", new { id = ViewBag.Id }, new { @class = "btn btn-success btn-xs"})
+    
 </p>
-<table class="table">
+<table class="table" style="color:darkcyan">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.hastaTb.adSoyad)
@@ -85,8 +83,8 @@
                 @Html.DisplayFor(modelItem => item.kanSekeri)
             </td>
             <td>
-                @Html.ActionLink("duzenle", "HastaDurumDuzenleme", new { id = item.Id }) |
-                @Html.ActionLink("sil", "HastaDurumSilme", new { id = item.Id })
+                @Html.ActionLink("DÜzenle", "HastaDurumDuzenleme", new { id = item.Id },new {@class="btn btn-warning btn-xs"}) 
+                @Html.ActionLink("Sil", "HastaDurumSilme", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })
             </td>
         </tr>
     }

@@ -22,7 +22,7 @@ namespace hts.Controllers
         }
 
         //------------Bileklik İslemleri---------------
-        public ActionResult BileklikSil(int? id)
+        public ActionResult BileklikSilme(int? id)
         {
             if (id == null)
             {
@@ -37,9 +37,9 @@ namespace hts.Controllers
 
         }
 
-        [HttpPost, ActionName("Silme")]
+        [HttpPost, ActionName("BileklikSilme")]
         [ValidateAntiForgeryToken]
-        public ActionResult BileklikSilOnay(int id)
+        public ActionResult BileklikSilmeOnay(int id)
         {
             BileklikTb bileklikTb = dbContext.Bileklikler.Find(id);
             dbContext.Bileklikler.Remove(bileklikTb);
@@ -140,7 +140,7 @@ namespace hts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoktorOlusturma([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,toplamBileklikSayisi,kontrolundekiBileklikSayisi,UzmanlikTbId")] DoktorTb doktorTb)
+        public ActionResult DoktorOlusturma([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,mail,kullaniciAdi,sifre,UzmanlikTbId")] DoktorTb doktorTb)
         {
             if (ModelState.IsValid)
             {
@@ -293,9 +293,27 @@ namespace hts.Controllers
 
                     return RedirectToAction("KurumAnasayfa", "Kurum");
                 }
+                if (kurum.kullaniciAdi != dt.kullaniciAdi && kurum.sifre == dt.sifre)
+                {
+                    //Session["yakinTc"] = kurum.yakinTc;
+                    ViewBag.mesaj = "hatalı kullanıcı girişi";
+                    return View();
+                }
+                if (kurum.kullaniciAdi == dt.kullaniciAdi && kurum.sifre != dt.sifre)
+                {
+                    //Session["yakinTc"] = kurum.yakinTc;
+                    ViewBag.mesaj = "hatalı sifre girisi";
+                    return View();
+                }
+                if (kurum.kullaniciAdi != dt.kullaniciAdi && kurum.sifre != dt.sifre)
+                {
+                    //Session["yakinTc"] = kurum.yakinTc;
+                    ViewBag.mesaj = "kullanıcı ve sifre hatalı";
+                    return View();
+                }
 
             }
-            ViewBag.mesaj = "hatalı";
+            
 
             return View();
         }

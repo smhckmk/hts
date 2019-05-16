@@ -15,9 +15,10 @@ namespace hts.Entity
         public double nabiz { get; set; }
         public double? konumY { get; set; }
         public double? konumX { get; set; }
-        public string alerjikDurumlar { get; set; }
         public string ozelHastaliklar { get; set; }
+        public string alerjikDurumlar { get; set; }
         public double kanSekeri { get; set; }
+
         public int HastaTbhastaTc { get; set; }
 
 

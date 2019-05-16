@@ -21,10 +21,6 @@ namespace hts.Entity
         public string parmakIzi { get; set; }
         public int DoktorTbdoktorTc { get; set; }
 
-
-
-       
-       
         
         public DoktorTb doktorTb { get; set; }
         

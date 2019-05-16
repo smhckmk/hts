@@ -4,31 +4,32 @@
     Layout = "~/Views/Shared/HastaneLayout.cshtml";
 }
 
-<h2>HastaAnasayfa</h2>
-
 <p>
-    @Html.ActionLink("yeni ekle", "HastaOlusturma")
+    @Html.ActionLink("Hasta Ekle", "HastaOlusturma", new { did = ViewBag.id }, new { @class = "btn btn-success btn-xs" })
+  
 </p>
-<table class="table">
-    <tr>
-
-        <th>
-            Hasta Adı
-        </th>
-        <th>
-            Doktor Adı
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hastaligi)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" style="color:darkcyan">
+    <thead >
+        <tr>
+            <th s>
+                Hasta Adı
+            </th>
+            <th>
+                Doktor Adı
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.hastaligi)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+   
 
     @foreach (var item in Model)
     {
@@ -50,8 +51,9 @@
                 @Html.DisplayFor(modelItem => item.hastaligi)
             </td>
             <td>
-                @Html.ActionLink("duzenle", "HastaDuzenleme", new { id = item.hastaTc }) |             
-                @Html.ActionLink("sil", "HastaSilme", new { id = item.hastaTc })
+                @Html.ActionLink("Düzenle", "HastaDuzenleme", new { id = item.hastaTc }, new { @class = "btn btn-warning btn-xs" })
+               
+                @Html.ActionLink("Sil", "HastaSilme", new { id = item.hastaTc },new { @class="btn btn-danger btn-xs" })
             </td>
         </tr>
     }

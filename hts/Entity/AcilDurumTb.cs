@@ -13,6 +13,7 @@ namespace hts.Entity
         public double aSicaklik { get; set; }
         public double aNabiz { get; set; }
         public string olcumZamani { get; set; }
+
         public int HastaTbhastaTc { get; set; }
 
         public HastaTb hastaTb { get; set; }

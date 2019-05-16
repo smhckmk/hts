@@ -19,7 +19,7 @@ namespace hts.Controllers
             int id = 0;
             id = Convert.ToInt32(Session["hastaneId"]);
             var hastane = dbContext.Hastaneler.Find(id);
-            ViewBag.hastaneAdi = hastane.hastaneAdi;
+           
 
 
             var doktorlar = dbContext.Doktorlar.Include(d => d.uzmanlikTb);
@@ -45,7 +45,7 @@ namespace hts.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoktorDuzenle([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,toplamBileklikSayisi,kontrolundekiBileklikSayisi,UzmanlikTbId")] DoktorTb doktorTb)
+        public ActionResult DoktorDuzenle([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,UzmanlikTbId")] DoktorTb doktorTb)
         {
             if (ModelState.IsValid)
             {
@@ -103,7 +103,7 @@ namespace hts.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaDurumDuzenleme([Bind(Include = "Id,yas,kilo,boy,yagOrani,nabiz,konumY,konumX,alerjikDurumlar,ozelHastaliklar,kanSekeri,HastaTbhastaTc")] HastaDurumTb hastaDurumTb)
+        public ActionResult HastaDurumDuzenleme([Bind(Include = "Id,yas,kilo,boy,yagOrani,nabiz,konumY,konumX,ozelHastaliklar,alerjikDurumlar,kanSekeri,HastaTbhastaTc")] HastaDurumTb hastaDurumTb)
         {
             if (ModelState.IsValid)
             {
@@ -342,9 +342,27 @@ namespace hts.Controllers
 
                     return RedirectToAction("HastaneAnasayfa", "Hastane");
                 }
+                if (hastane.kullaniciAdi != dt.kullaniciAdi && hastane.sifre == dt.sifre)
+                {
+
+                    ViewBag.mesaj = "kullanıcı adi hatalı";
+                    return View();
+                }
+                if (hastane.kullaniciAdi == dt.kullaniciAdi && hastane.sifre != dt.sifre)
+                {
+
+                    ViewBag.mesaj = "şifre hatalı";
+                    return View();
+                }
+                if (hastane.kullaniciAdi != dt.kullaniciAdi && hastane.sifre != dt.sifre)
+                {
+
+                    ViewBag.mesaj = "kullanici adi ve şifre hatalı";
+                    return View();
+                }
 
             }
-            ViewBag.mesaj = "hatalı";
+           
 
             return View();
         }

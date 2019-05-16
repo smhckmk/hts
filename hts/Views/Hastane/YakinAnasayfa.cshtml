@@ -4,12 +4,11 @@
     Layout = "~/Views/Shared/HastaneLayout.cshtml";
 }
 
-<h2>YakinAnasayfa</h2>
-
 <p>
-    @Html.ActionLink("yeni ekle", "YakinOlusturma")
+   
+    @Html.ActionLink("Yakın Ekle", "YakinOlusturma", new { id = ViewBag.Id }, new { @class = "btn btn-success btn-xs" })
 </p>
-<table class="table">
+<table class="table" style="color:darkcyan">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.doktorTb.adSoyad)
@@ -48,8 +47,9 @@
                 @Html.DisplayFor(modelItem => item.HastaTbhastaTc)
             </td>
             <td>
-                @Html.ActionLink("duzenle", "YakinDuzenleme", new { id = item.yakinTc }) |
-                @Html.ActionLink("sil", "YakinSilme", new { id = item.yakinTc })
+                @Html.ActionLink("Düzenle", "YakinDuzenleme", new { id = item.yakinTc }, new { @class = "btn btn-warning btn-xs" })
+                @Html.ActionLink("Sil", "YakinSilme", new { id = item.yakinTc }, new { @class = "btn btn-danger btn-xs" })
+              
             </td>
         </tr>
     }

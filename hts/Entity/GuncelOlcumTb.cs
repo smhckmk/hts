@@ -13,6 +13,7 @@ namespace hts.Entity
         public string guncelKonumY { get; set; }
         public double guncelSicaklik { get; set; }
         public double guncelNabiz { get; set; }
+
         public int HastaTbhastaTc { get; set; }
 
 

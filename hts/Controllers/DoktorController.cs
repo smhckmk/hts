@@ -22,6 +22,7 @@ namespace hts.Controllers
             id = Convert.ToInt32(Session["doktorTc"]);
             var doktor = dbContext.Doktorlar.Find(id);
             ViewBag.adSoyad = doktor.adSoyad;
+
             ViewBag.id = id;
             DoktorHastaAcilDurum doktorHastaAcilDurum = new DoktorHastaAcilDurum();
 
@@ -37,12 +38,19 @@ namespace hts.Controllers
 
         public ActionResult Bileklik()
         {
-            var bileklikler = dbContext.Bileklikler.Include(b => b.hastaTb);
-            return View(bileklikler.ToList());
+            DoktorBileklikHasta doktorBilekHasta = new DoktorBileklikHasta();
+
+            int id = 0;
+            id = Convert.ToInt32(Session["doktorTc"]);
+            doktorBilekHasta.doktorlar = dbContext.Doktorlar.Where(x => x.doktorTc == id).ToList();
+            doktorBilekHasta.bileklikler = dbContext.Bileklikler.ToList();
+            doktorBilekHasta.hastalar = dbContext.Hastalar.ToList();
+
+            return View(doktorBilekHasta);
         }
 
-        
-        public ActionResult BileklikDuzenle(int? id)
+
+        public ActionResult BileklikDuzenle(int? id, int? did)
         {
             if (id == null)
             {
@@ -53,14 +61,14 @@ namespace hts.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar, "hastaTc", "adSoyad", bileklikTb.HastaTbhastaTc);
+            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar.Where(i => i.DoktorTbdoktorTc == did), "hastaTc", "adSoyad", bileklikTb.HastaTbhastaTc);
             return View(bileklikTb);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult BileklikDuzenle([Bind(Include = "Id,verilebilmeDurumu,HastaTbhastaTc")] BileklikTb bileklikTb)
+        public ActionResult BileklikDuzenle([Bind(Include = "Id,verilebilmeDurumu,HastaTbhastaTc")] BileklikTb bileklikTb, int? did)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +76,7 @@ namespace hts.Controllers
                 dbContext.SaveChanges();
                 return RedirectToAction("Bileklik");
             }
-            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar, "hastaTc", "adSoyad", bileklikTb.HastaTbhastaTc);
+            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar.Where(i => i.DoktorTbdoktorTc == did), "hastaTc", "adSoyad", bileklikTb.HastaTbhastaTc);
             return View(bileklikTb);
         }
 
@@ -112,15 +120,19 @@ namespace hts.Controllers
         }
 
 
-        public ActionResult HastaMuayeneOlusturma(int? did)
+        public ActionResult HastaMuayeneOlusturma()
         {
+            int did = 0;
+            did = Convert.ToInt32(Session["doktorTc"]);
+
+
             ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar.Where(i => i.DoktorTbdoktorTc == did), "hastaTc", "hastaTc");
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaMuayeneOlusturma([Bind(Include = "Id,konumMaxX,konumMaxY,nabizMax,nabizMin,sicaklikOlcumSikligi,nabizOlcumSikligi,konumOlcumSikligi,bildirimSikligi,HastaTbhastaTc")] MuayeneTb muayeneTb, int? did)
+        public ActionResult HastaMuayeneOlusturma([Bind(Include = "Id,konumMaxX,konumMaxY,nabizMax,nabizMin,HastaTbhastaTc")] MuayeneTb muayeneTb, int? did)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +163,7 @@ namespace hts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaMuayeneDuzenleme([Bind(Include = "Id,konumMaxX,konumMaxY,nabizMax,nabizMin,sicaklikOlcumSikligi,nabizOlcumSikligi,konumOlcumSikligi,bildirimSikligi,HastaTbhastaTc")] MuayeneTb muayeneTb, int? did)
+        public ActionResult HastaMuayeneDuzenleme([Bind(Include = "Id,konumMaxX,konumMaxY,nabizMax,nabizMin,HastaTbhastaTc")] MuayeneTb muayeneTb, int? did)
         {
             if (ModelState.IsValid)
             {
@@ -159,7 +171,7 @@ namespace hts.Controllers
                 dbContext.SaveChanges();
                 return RedirectToAction("HastaMuayene");
             }
-            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar.Where(i=>i.DoktorTbdoktorTc==did), "hastaTc", "adSoyad", muayeneTb.HastaTbhastaTc);
+            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar.Where(i => i.DoktorTbdoktorTc == did), "hastaTc", "adSoyad", muayeneTb.HastaTbhastaTc);
             return View(muayeneTb);
         }
 
@@ -216,10 +228,25 @@ namespace hts.Controllers
 
                     return RedirectToAction("Anasayfa", "Doktor");
                 }
+                if (doktor.kullaniciAdi == dt.kullaniciAdi && doktor.sifre != dt.sifre)
+                {
+                    ViewBag.mesaj = "sifre hatalı";
+                    return View();
+                }
+
+                if (doktor.kullaniciAdi != dt.kullaniciAdi && doktor.sifre == dt.sifre)
+                {
+                    ViewBag.mesaj = "kullanıcı adı hatalı";
+                    return View();
+                }
+                if (doktor.kullaniciAdi != dt.kullaniciAdi && doktor.sifre != dt.sifre)
+                {
+                    ViewBag.mesaj = "kullanıcı ve sifre hatalı";
+                    return View();
+                }
 
             }
-            ViewBag.mesaj = "hatalı";
-
+          
             return View();
         }
 

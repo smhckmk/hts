@@ -14,10 +14,7 @@ namespace hts.Entity
         public double konumMaxY { get; set; }
         public double nabizMax { get; set; }
         public double nabizMin { get; set; }
-        public double sicaklikOlcumSikligi { get; set; }
-        public double nabizOlcumSikligi { get; set; }
-        public double konumOlcumSikligi { get; set; }
-        public double bildirimSikligi { get; set; }
+       
         public int HastaTbhastaTc { get; set; }
 
 

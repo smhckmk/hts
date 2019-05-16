@@ -16,12 +16,17 @@ namespace hts.Entity
         public string adSoyad { get; set; }
         public string telefon { get; set; }
         public string adres { get; set; }
+        public string mail { get; set; }
         public string kullaniciAdi { get; set; }
-        public string sifre { get; set; }
+        public string sifre { get; set; }       
         public int HastaTbhastaTc { get; set; }
         public int DoktorTbdoktorTc { get; set; }
 
+        
         public DoktorTb doktorTb { get; set; }
-       
+
+        
+
+
     }
 }

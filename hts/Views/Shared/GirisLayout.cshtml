@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/Bitirme/css/giris.css" />
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/Home/Anasayfa">Anasayfa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Kurum/KurumGiris">Kurum İşlemleri</a>
+                </li>
+                <li class="nav-item" style="margin-top: 5px; margin-left: 350px;">Hastane Takip Sistemi</li>
+                <li class="nav-item" style="margin-left:200px;">
+                    <a class="nav-link" href="/Doktor/DoktorGiris">Doktor</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Hastane/HastaneGiris">Hastane</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Yakin/Giris">Yakın</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="login">
+       @RenderBody()
+    </div>
+    <hr />
+
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Hasta Takip Sistemi</p>
+    </footer>
+
+</body>
+
+</html>
+

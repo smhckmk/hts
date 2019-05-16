@@ -17,9 +17,21 @@ namespace hts.Entity
         public string iletisim { get; set; }
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
-
+        public string logo { get; set; }
 
         public List<HastaneTb> hastaneler { get; set; }
+
+        public KurumTb()
+        {
+            kurumAdi = "AHTS";
+            misyon = "";
+            subeler = "";
+            hizmetler = "";
+            iletisim = "";
+            kullaniciAdi = "admin";
+            sifre = "123";
+            logo = "/Bitirme/img/images.png";
+        }
 
     }
 }

@@ -4,9 +4,8 @@
     Layout = "/Views/Shared/HastaneLayout.cshtml";
 }
 
-@ViewBag.hastaneAdi
 
-<table class="table">
+<table class="table" style="color:darkcyan">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.uzmanlikTb.uzmanlikAdi)
@@ -57,7 +56,7 @@
                 @Html.DisplayFor(modelItem => item.kontrolundekiBileklikSayisi)
             </td>
             <td>
-                @Html.ActionLink("duzenle", "DoktorDuzenle", new { id = item.doktorTc })
+                @Html.ActionLink("duzenle", "DoktorDuzenle", new { id = item.doktorTc },new { @class="btn btn-warning btn-xs"})
 
             </td>
         </tr>
