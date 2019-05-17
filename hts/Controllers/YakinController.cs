@@ -13,6 +13,7 @@ namespace hts.Controllers
     {
 
         htsContext dbContext = new htsContext();
+        int did;
 
         public ActionResult Anasayfa()
         {
@@ -31,9 +32,11 @@ namespace hts.Controllers
             return View(hastayakin);
         }
 
+        //----------------------------------------Hasta Guncel Durum-------------------------------------
+
         public ActionResult HastaGuncelDurum()
         {
-            YakinHastaGuncelOlcum hastaDurum= new YakinHastaGuncelOlcum();
+            YakinHastaGuncelOlcum hastaDurum = new YakinHastaGuncelOlcum();
 
             int id = 0;
             id = Convert.ToInt32(Session["yakinTc"]);
@@ -48,6 +51,105 @@ namespace hts.Controllers
             return View(hastaDurum);
         }
 
+        //----------------------------------------Yakin Mesaj İşlemleri----------------------------------
+
+        public ActionResult GelenKutusu()
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["yakinTc"]);
+            var yakın = dbContext.Yakinlar.Find(id);
+            ViewBag.adSoyad = yakın.adSoyad;
+
+            DoktorYakinHastaYakinMesaj dyhym = new DoktorYakinHastaYakinMesaj();
+
+            dyhym.yakinlar = dbContext.Yakinlar.Where(x => x.yakinTc == id).ToList();
+            dyhym.hastalar = dbContext.Hastalar.ToList();
+            dyhym.doktorlar = dbContext.Doktorlar.ToList();
+            dyhym.mesajlar = dbContext.YakinMesaj.ToList();
+
+
+            return View(dyhym);
+        }
+
+        public ActionResult GelenMesajiYaz(int? doktorTc)
+        {        
+            var doktor = dbContext.Doktorlar.Find(doktorTc);
+            ViewBag.adSoyad = doktor.adSoyad;
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GelenMesajiYaz(hts.Entity.DoktorMesajTb dMT, string mesaj, int doktorTc, int yakinTc)
+        {
+            DateTime dateTime = DateTime.Now;
+            string tarih = dateTime.ToString();
+
+            if (ModelState.IsValid)
+            {
+                dMT.mesaj = mesaj;
+                dMT.tarih = tarih;
+                dMT.DoktorTbdoktorTc = doktorTc;
+                dMT.YakinTbyakinTc = yakinTc;
+                dbContext.DoktorMesaj.Add(dMT);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("GelenKutusu");
+            }
+
+            return View();
+        }
+
+
+        public ActionResult MesajYaz()
+        {
+           
+            int id = 0;
+            id = Convert.ToInt32(Session["yakinTc"]);
+            var doktor = dbContext.Yakinlar.Where(i => i.yakinTc == id);
+            foreach (var item in doktor)
+            {
+                did = item.DoktorTbdoktorTc;
+            }
+            ViewBag.DoktorTbDoktorTc = new SelectList(dbContext.Doktorlar.Where(i => i.doktorTc == did), "doktorTc", "adSoyad");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MesajYaz(hts.Entity.DoktorMesajTb dMT, string mesaj, int DoktorTbdoktorTc)
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["yakinTc"]);
+
+            DateTime dateTime = DateTime.Now;
+            string tarih = dateTime.ToString();
+
+            if (ModelState.IsValid)
+            {
+                dMT.mesaj = mesaj;
+                dMT.tarih = tarih;
+                dMT.DoktorTbdoktorTc = DoktorTbdoktorTc;
+                dMT.YakinTbyakinTc = id;
+                dbContext.DoktorMesaj.Add(dMT);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Anasayfa");
+            }
+
+            var doktor = dbContext.Yakinlar.Where(i => i.yakinTc == id);
+            foreach (var item in doktor)
+            {
+                did = item.DoktorTbdoktorTc;
+            }
+
+            ViewBag.DoktorTbDoktorTc = new SelectList(dbContext.Doktorlar.Where(i => i.doktorTc == did), "doktorTc", "adSoyad", dMT.DoktorTbdoktorTc);
+            return View(dMT);
+
+        }
+        //----------------------------------------Yakin Giris--------------------------------------------
         public ActionResult Giris()
         {
             if (String.IsNullOrEmpty(HttpContext.User.Identity.Name))

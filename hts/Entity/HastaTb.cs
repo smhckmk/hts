@@ -19,6 +19,7 @@ namespace hts.Entity
         public string adres { get; set; }
         public string hastaligi { get; set; }
         public string parmakIzi { get; set; }
+        public string logo { get; set; }
         public int DoktorTbdoktorTc { get; set; }
 
        

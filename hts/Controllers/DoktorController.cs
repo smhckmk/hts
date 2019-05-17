@@ -88,7 +88,7 @@ namespace hts.Controllers
             id = Convert.ToInt32(Session["doktorTc"]);
             var doktor = dbContext.Doktorlar.Find(id);
             ViewBag.adSoyad = doktor.adSoyad;
-
+            ViewBag.doktorId = id;
             DoktorYakinHastaDoktorMesaj dyhm = new DoktorYakinHastaDoktorMesaj();
 
             dyhm.doktorlar = dbContext.Doktorlar.Where(x => x.doktorTc == id).ToList();
@@ -100,48 +100,76 @@ namespace hts.Controllers
             return View(dyhm);
         }
 
-        public ActionResult MesajYaz(int? yakinTc,int? did)
+
+        public ActionResult GelenMesajiYaz(int? yakinTc)
         {
             ViewBag.yakinTc = yakinTc;
             var yakin = dbContext.Yakinlar.Find(yakinTc);
             ViewBag.adSoyad = yakin.adSoyad;
-           
             return View();
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult MesajYaz(string mesaaj,int yakinTc)
+        public ActionResult GelenMesajiYaz(hts.Entity.YakinMesajTb yMT, string mesaj, int yakinTc, int doktorTc)
         {
-            int id = 0;
-            id = Convert.ToInt32(Session["doktorTc"]);
-
-            DateTime tarih = DateTime.Now;
-            string tarihh = tarih.ToString();
-            YakinMesajTb mesaj = new YakinMesajTb();
+            DateTime dateTime = DateTime.Now;
+            string tarih = dateTime.ToString();
 
             if (ModelState.IsValid)
             {
-                mesaj.DoktorTbdoktorTc = id;
-                mesaj.YakinTbyakinTc = yakinTc;
-                mesaj.mesaj = mesaaj;
-                mesaj.tarih = tarihh;
-                dbContext.YakinMesaj.Add(mesaj);
-
+                yMT.mesaj = mesaj;
+                yMT.tarih = tarih;
+                yMT.YakinTbyakinTc = yakinTc;
+                yMT.DoktorTbdoktorTc = doktorTc;
+                dbContext.YakinMesaj.Add(yMT);
                 dbContext.SaveChanges();
 
-                return RedirectToAction("GelenKutusu", "Doktor");
+                return RedirectToAction("GelenKutusu");
             }
 
-          
             return View();
-            
+        }
+       
+
+        public ActionResult MesajYaz()
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["doktorTc"]);
+            ViewBag.YakinTbyakinTc = new SelectList(dbContext.Yakinlar.Where(i=>i.DoktorTbdoktorTc==id), "yakinTc", "adSoyad");
+            return View();
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MesajYaz(hts.Entity.YakinMesajTb yMT,string mesaj,int YakinTbyakinTc)
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["doktorTc"]);
+            
+            DateTime dateTime = DateTime.Now;
+            string tarih = dateTime.ToString();
 
-        //-------------------Doktor Guncel Durum -------------------------
+            if (ModelState.IsValid)
+            {
+                yMT.mesaj = mesaj;
+                yMT.tarih = tarih;
+                yMT.YakinTbyakinTc = YakinTbyakinTc;
+                yMT.DoktorTbdoktorTc = id;
+                dbContext.YakinMesaj.Add(yMT);
+                dbContext.SaveChanges();
+
+                return RedirectToAction("Anasayfa");
+            }
+
+            ViewBag.YakinTbyakinTc = new SelectList(dbContext.Yakinlar.Where(i=>i.DoktorTbdoktorTc==id), "yakinTc", "adSoyad", yMT.YakinTbyakinTc);
+            return View(yMT);
+
+        }
+
+        //-------------------Doktor Guncel Durum ------------------------------------
 
         public ActionResult GuncelDurum()
         {
@@ -295,7 +323,7 @@ namespace hts.Controllers
                 }
 
             }
-          
+
             return View();
         }
 

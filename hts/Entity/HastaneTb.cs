@@ -18,6 +18,7 @@ namespace hts.Entity
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
         public bool uyelik { get; set; }
+        public string logo { get; set; }
         public int KurumTbkurumId { get; set; }
 
       

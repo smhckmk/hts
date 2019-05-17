@@ -27,7 +27,7 @@ namespace hts.Entity
                                                "Email: hastane @hacettepe.edu.tr",
                                                kullaniciAdi ="admin",
                                                sifre ="123",
-                                               logo ="dkncdd"}
+                                              }
 
 
             };
@@ -35,6 +35,26 @@ namespace hts.Entity
             {
                 context.Kurumlar.Add(item);
             }
+            List<UzmanlikTb> uzmanlikTb = new List<UzmanlikTb>()
+            {
+                new UzmanlikTb()
+                {
+                    uzmanlikAdi="Kardiyoloji"
+                },
+                 new UzmanlikTb()
+                {
+                    uzmanlikAdi="Uroloji"
+                },
+                  new UzmanlikTb()
+                {
+                    uzmanlikAdi="KBB"
+                }
+            };
+            foreach (var item in uzmanlikTb)
+            {
+                context.Uzmanlar.Add(item);
+            }
+
             context.SaveChanges();
             base.Seed(context);
         }

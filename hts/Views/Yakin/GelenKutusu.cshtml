@@ -1,7 +1,7 @@
-﻿@model hts.Models.DoktorYakinHastaDoktorMesaj
+﻿@model hts.Models.DoktorYakinHastaYakinMesaj
 @{
     ViewBag.Title = "GelenKutusu";
-    Layout = "~/Views/Shared/DoktorLayout.cshtml";
+    Layout = "~/Views/Shared/YakinLayout.cshtml";
 }
 
 <h2>GelenKutusu</h2>
@@ -10,7 +10,7 @@
     <thead>
         <tr>
             <th>
-                Yakin Adı
+                Doktor Adı
             </th>
             <th>
                 Hasta Adı
@@ -25,19 +25,17 @@
     <tbody>
         @foreach (var mesaj in Model.mesajlar)
         {
-
-            foreach (var doktor in Model.doktorlar)
+            foreach (var yakin in Model.yakinlar)
             {
                 foreach (var hasta in Model.hastalar)
                 {
-                    foreach (var yakin in Model.yakinlar)
+                    foreach (var doktor in Model.doktorlar)
                     {
-                        if (mesaj.DoktorTbdoktorTc == doktor.doktorTc && yakin.HastaTbhastaTc == hasta.hastaTc && hasta.DoktorTbdoktorTc == doktor.doktorTc)
+                        if (mesaj.YakinTbyakinTc == yakin.yakinTc && yakin.HastaTbhastaTc == hasta.hastaTc && hasta.DoktorTbdoktorTc == doktor.doktorTc)
                         {
-
                             <tr>
                                 <td>
-                                    @yakin.adSoyad
+                                    @doktor.adSoyad
                                 </td>
                                 <td>
                                     @hasta.adSoyad
@@ -47,16 +45,15 @@
                                 </td>
                                 <td>
 
-                                    @Html.ActionLink("Cevapla", "GelenMesajiYaz", new { yakinTc = yakin.yakinTc, doktorTc = doktor.doktorTc }, new { @class = "btn btn-warning btn-xs" })
+                                    @Html.ActionLink("Cevapla", "GelenMesajiYaz", new { doktorTc = doktor.doktorTc, yakinTc = yakin.yakinTc }, new { @class = "btn btn-warning btn-xs" })
                                 </td>
                             </tr>
                         }
+
                     }
                 }
             }
         }
- 
-
 
     </tbody>
 </table>

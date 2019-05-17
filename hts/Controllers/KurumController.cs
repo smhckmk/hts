@@ -19,7 +19,7 @@ namespace hts.Controllers
         {
             var bileklikler = dbContext.Bileklikler.Include(b => b.hastaTb);
             return View(bileklikler.ToList());
-            
+
         }
 
         //------------Bileklik İslemleri---------------
@@ -121,7 +121,7 @@ namespace hts.Controllers
             return View(doktorTb);
         }
 
-        
+
         [HttpPost, ActionName("DoktorSil")]
         [ValidateAntiForgeryToken]
         public ActionResult DoktorSilOnay(int id)
@@ -169,7 +169,7 @@ namespace hts.Controllers
             return View(doktorTb);
         }
 
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DoktorDuzenle([Bind(Include = "doktorTc,adSoyad,maas")] DoktorTb doktorTb)
@@ -232,30 +232,64 @@ namespace hts.Controllers
         }
 
 
-
         public ActionResult HastaneOlusturma()
         {
             ViewBag.KurumTbkurumId = new SelectList(dbContext.Kurumlar, "kurumId", "kurumAdi");
+           
             return View();
         }
 
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaneOlusturma([Bind(Include = "hastaneId,hastaneAdi,telefon,adres,mail,kullaniciAdi,sifre,uyelik,KurumTbkurumId")] HastaneTb hastaneTb)
+        public ActionResult HastaneOlusturma(hts.Entity.HastaneTb ht, string hastaneAdi, string telefon, string adres, string mail, string kullaniciAdi, string sifre,bool uyelik, int KurumTbkurumId)
         {
+            HastaneTb hastaneTb = new HastaneTb();
+
             if (ModelState.IsValid)
             {
+                hastaneTb.hastaneAdi = hastaneAdi;
+                hastaneTb.telefon = telefon;
+                hastaneTb.adres = adres;
+                hastaneTb.mail = mail;
+                hastaneTb.kullaniciAdi = kullaniciAdi;
+                hastaneTb.sifre = sifre;
+                hastaneTb.uyelik = uyelik;               
+                hastaneTb.KurumTbkurumId = KurumTbkurumId;
+
                 dbContext.Hastaneler.Add(hastaneTb);
+
                 dbContext.SaveChanges();
+
+                MailMessage msj = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("semihcakmak7126@gmail.com", "merve0804semih.");
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                msj.From = new MailAddress("semihcakmak7126@gmail.com", "merve0804semih.");
+                msj.To.Add(mail);
+
+
+                var yeniHastane = dbContext.Hastaneler.Where(i => i.mail == mail).ToList();
+                foreach (var item in yeniHastane)
+                {
+                    mesaj = "Uyelik bilgileriniz: " + item.hastaneAdi + " " + item.telefon + " " + item.adres + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre + ", seklinde sisteme kayit edilmiştir. İyi Günler";
+                }
+                msj.Subject = "Uyelik Hakkında";
+
+                msj.Body = mesaj;
+
+                client.Send(msj);
+
                 return RedirectToAction("HastaneAnasayfa");
             }
 
             ViewBag.KurumTbkurumId = new SelectList(dbContext.Kurumlar, "kurumId", "kurumAdi", hastaneTb.KurumTbkurumId);
-            return View(hastaneTb);
+           
+            return View();
         }
-
-
+       
         public ActionResult HastaneDuzenle(int? id)
         {
             if (id == null)
@@ -271,10 +305,10 @@ namespace hts.Controllers
             return View(hastaneTb);
         }
 
-     
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaneDuzenle([Bind(Include = "hastaneId,hastaneAdi,telefon,adres,mail,kullaniciAdi,sifre,uyelik,KurumTbkurumId")] HastaneTb hastaneTb,int id,string idMail,bool uyelik)
+        public ActionResult HastaneDuzenle([Bind(Include = "hastaneId,hastaneAdi,telefon,adres,mail,kullaniciAdi,sifre,uyelik,KurumTbkurumId")] HastaneTb hastaneTb, int id, string idMail, bool uyelik)
         {
             if (ModelState.IsValid)
             {
@@ -351,7 +385,7 @@ namespace hts.Controllers
                 }
 
             }
-            
+
 
             return View();
         }

@@ -19,6 +19,7 @@ namespace hts.Entity
         public string mail { get; set; }
         public string kullaniciAdi { get; set; }
         public string sifre { get; set; }
+        public string logo { get; set; }
 
         public int? UzmanlikTbId { get; set; }
        

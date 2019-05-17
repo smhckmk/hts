@@ -16,6 +16,7 @@ namespace hts.Controllers
         htsContext dbContext = new htsContext();
         string mesaj;
 
+
         public ActionResult HastaneAnasayfa()
         {
             int id = 0;
@@ -39,7 +40,7 @@ namespace hts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Kayit(hts.Entity.HastaneTb ht,string hastaneAdi,string telefon,string adres,string mail,string kullaniciAdi,string sifre, int KurumTbkurumId)
+        public ActionResult Kayit(hts.Entity.HastaneTb ht, string hastaneAdi, string telefon, string adres, string mail, string kullaniciAdi, string sifre, int KurumTbkurumId)
         {
             HastaneTb hastaneTb = new HastaneTb();
             if (ModelState.IsValid)
@@ -68,7 +69,7 @@ namespace hts.Controllers
                 var yeniHastane = dbContext.Hastaneler.Where(i => i.mail == mail).ToList();
                 foreach (var item in yeniHastane)
                 {
-                    mesaj = "Uyelik bilgileriniz: "+item.hastaneAdi + " " + item.telefon + " " + item.adres + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre+", seklinde olup ilgili degerlendirmeler sonucunda bilgi verilecektir. İyi Günler";
+                    mesaj = "Uyelik bilgileriniz: " + item.hastaneAdi + " " + item.telefon + " " + item.adres + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre + ", seklinde olup ilgili degerlendirmeler sonucunda bilgi verilecektir. İyi Günler";
                 }
                 msj.Subject = "Uyelik Hakkında";
 
@@ -83,37 +84,39 @@ namespace hts.Controllers
             return View();
         }
 
-     
+
         public ActionResult KayitMesaj()
         {
-            
+
             return View();
         }
 
-        //----------------------Doktor İşlemeleri-----------------------------
-        public ActionResult DoktorDuzenle(int? id)
+        //----------------------Doktor İşlemleri-----------------------------       
+
+
+        public ActionResult DoktorDuzenle(int? doktorTc)
         {
-            if (id == null)
+            if (doktorTc == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DoktorTb doktorTb = dbContext.Doktorlar.Find(id);
+            DoktorTb doktorTb = dbContext.Doktorlar.Find(doktorTc);
             if (doktorTb == null)
             {
                 return HttpNotFound();
             }
+
             ViewBag.UzmanlikTbId = new SelectList(dbContext.Uzmanlar, "Id", "uzmanlikAdi", doktorTb.UzmanlikTbId);
+
             return View(doktorTb);
         }
 
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DoktorDuzenle([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,mail,kullaniciAdi,sifre,UzmanlikTbId")] DoktorTb doktorTb, int? id, string idMail)
+        public ActionResult DoktorDuzenle([Bind(Include = "doktorTc,adSoyad,telefon,adres,maas,mail,kullaniciAdi,sifre,UzmanlikTbId")] DoktorTb doktorTb, int? doktorTc, string mail)
         {
             if (ModelState.IsValid)
             {
-
                 dbContext.Entry(doktorTb).State = EntityState.Modified;
                 dbContext.SaveChanges();
 
@@ -124,15 +127,15 @@ namespace hts.Controllers
                 client.Host = "smtp.gmail.com";
                 client.EnableSsl = true;
                 msj.From = new MailAddress("semihcakmak7126@gmail.com", "merve0804semih.");
-                msj.To.Add(idMail);
+                msj.To.Add(mail);
 
 
-                var yeniDoktor = dbContext.Doktorlar.Where(i => i.doktorTc == id).ToList();
+                var yeniDoktor = dbContext.Doktorlar.Where(i => i.doktorTc == doktorTc).ToList();
                 foreach (var item in yeniDoktor)
                 {
-                    mesaj = item.adSoyad + " " + item.telefon + " " + item.adres + " " + item.maas + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre;
+                    mesaj = "Merhaba " + item.adSoyad + " Uyelik bilgileriniz güncellenmiştir. Bilgileriniz " + item.doktorTc + " " + item.adSoyad + " " + item.telefon + " " + item.adres + " " + item.maas + " " + item.mail + ", seklindedir." + "Kullanıcı Adı: " + item.kullaniciAdi + " Sifre: " + item.sifre + "ile sisteme giris yapabilirsiniz. İyi Günler";
                 }
-                msj.Subject = "Bilgileriniz Guncellenmitir";
+                msj.Subject = "Üyelik İşlemleri";
 
                 msj.Body = mesaj;
 
@@ -144,7 +147,7 @@ namespace hts.Controllers
             return View(doktorTb);
         }
 
-        //----------------------HastaDurum İşlemleri-----------------------
+        //----------------------HastaDurum İşlemleri--------------------------------------------------------------
         public ActionResult HastaDurumAnasayfa()
         {
             var hastaDurumlar = dbContext.HastaDurumlar.Include(h => h.hastaTb);
@@ -321,9 +324,10 @@ namespace hts.Controllers
             return View(yakinlar.ToList());
         }
 
+        //---------------------------------------------------------------------------------------------
+
         public ActionResult YakinOlusturma()
         {
-             
             ViewBag.DoktorTbdoktorTc = new SelectList(dbContext.Doktorlar, "doktorTc", "adSoyad");
             ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar, "hastaTc", "adSoyad");
             return View();
@@ -332,20 +336,53 @@ namespace hts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult YakinOlusturma([Bind(Include = "yakinTc,adSoyad,telefon,adres,mail,kullaniciAdi,sifre,HastaTbhastaTc,DoktorTbdoktorTc")] YakinTb yakinTb)
+        public ActionResult YakinOlusturma(hts.Entity.YakinTb yt, int yakinTc, string adSoyad, string telefon, string adres, string mail, string kullaniciAdi, string sifre, int HastaTbhastaTc, int DoktorTbdoktorTc)
         {
+            YakinTb yakinTb = new YakinTb();
             if (ModelState.IsValid)
             {
-                dbContext.Yakinlar.Add(yakinTb);
+                yt.yakinTc = yakinTc;
+                yt.adSoyad = adSoyad;
+                yt.telefon = telefon;
+                yt.adres = adres;
+                yt.mail = mail;
+                yt.kullaniciAdi = kullaniciAdi;
+                yt.sifre = sifre;
+                yt.HastaTbhastaTc = HastaTbhastaTc;
+                yt.DoktorTbdoktorTc = DoktorTbdoktorTc;
+                dbContext.Yakinlar.Add(yt);
+
                 dbContext.SaveChanges();
-                
+
+                MailMessage msj = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("semihcakmak7126@gmail.com", "merve0804semih.");
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                msj.From = new MailAddress("semihcakmak7126@gmail.com", "merve0804semih.");
+                msj.To.Add(mail);
+
+
+                var yeniYakin = dbContext.Yakinlar.Where(i => i.yakinTc == yakinTc).ToList();
+                foreach (var item in yeniYakin)
+                {
+                    mesaj = "Merhaba " + item.adSoyad + " Uyelik bilgileriniz sisteme eklenmiştir. Bilgileriniz " + item.yakinTc + " " + item.adSoyad + " " + item.telefon + " " + item.adres + " " + item.mail + ", seklindedir." + "Kullanıcı Adı: " + item.kullaniciAdi + " Sifre: " + item.sifre + "ile sisteme giris yapabilirsiniz. İyi Günler";
+                }
+                msj.Subject = "Uyelik Hakkında";
+
+                msj.Body = mesaj;
+
+                client.Send(msj);
 
                 return RedirectToAction("YakinAnasayfa");
             }
 
-            ViewBag.DoktorTbdoktorTc = new SelectList(dbContext.Doktorlar, "doktorTc", "adSoyad", yakinTb.DoktorTbdoktorTc);
-            ViewBag.HastaTbhastaTc = new SelectList(dbContext.Hastalar, "hastaTc", "adSoyad", yakinTb.HastaTbhastaTc);
-            return View(yakinTb);
+            ViewBag.HastaTbHastaTc = new SelectList(dbContext.Hastalar, "hastaTc", "adSoyad", yakinTb.HastaTbhastaTc);
+            ViewBag.DoktorTbDoktorTc = new SelectList(dbContext.Doktorlar, "doktorTc", "adSoyad", yakinTb.DoktorTbdoktorTc);
+
+
+            return View();
         }
 
 
@@ -365,11 +402,9 @@ namespace hts.Controllers
             return View(yakinTb);
         }
 
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult YakinDuzenleme([Bind(Include = "yakinTc,adSoyad,telefon,adres,mail,kullaniciAdi,sifre,HastaTbhastaTc,DoktorTbdoktorTc")] YakinTb yakinTb,int? id,string idMail)
+        public ActionResult YakinDuzenleme([Bind(Include = "yakinTc,adSoyad,telefon,adres,mail,kullaniciAdi,sifre,HastaTbhastaTc,DoktorTbdoktorTc")] YakinTb yakinTb, int? id, string idMail)
         {
             if (ModelState.IsValid)
             {
@@ -389,9 +424,9 @@ namespace hts.Controllers
                 var yeniYakin = dbContext.Yakinlar.Where(i => i.yakinTc == id).ToList();
                 foreach (var item in yeniYakin)
                 {
-                    mesaj = item.adSoyad + " " + item.telefon + " " + item.adres + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre;
+                    mesaj = "Merhaba " + item.adSoyad + " Bilgileriniz Güncellenmiştir." + " Yeni Bilgileriniz" + item.adSoyad + " " + item.telefon + " " + item.adres + " " + item.mail + " " + item.kullaniciAdi + " " + item.sifre;
                 }
-                msj.Subject = "bilgileriniz guncellenmistir";
+                msj.Subject = "Üyelik İşlemleri";
 
                 msj.Body = mesaj;
 
@@ -457,7 +492,7 @@ namespace hts.Controllers
                 {
                     ViewBag.mesaj = "hatalı";
                 }
-             
+
 
             }
 

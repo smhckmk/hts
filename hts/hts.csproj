@@ -247,6 +247,7 @@
     <Compile Include="Models\DoktorHastaGuncelDurum.cs" />
     <Compile Include="Models\DoktorHastaMuayene.cs" />
     <Compile Include="Models\DoktorYakinHastaDoktorMesaj.cs" />
+    <Compile Include="Models\DoktorYakinHastaYakinMesaj.cs" />
     <Compile Include="Models\YakinHastaAcilDurum.cs" />
     <Compile Include="Models\HomeAnasayfa.cs" />
     <Compile Include="Models\YakinHastaGuncelOlcum.cs" />
@@ -309,9 +310,13 @@
     <Content Include="Views\Shared\GirisLayout.cshtml" />
     <Content Include="Views\Hastane\KayitMesaj.cshtml" />
     <Content Include="Views\Doktor\GelenKutusu.cshtml" />
-    <Content Include="Views\Doktor\MesajYaz.cshtml" />
     <Content Include="Views\Hastane\Kayit.cshtml" />
     <Content Include="Views\Kurum\HastaneDetay.cshtml" />
+    <Content Include="Views\Doktor\GelenMesajiYaz.cshtml" />
+    <Content Include="Views\Doktor\MesajYaz.cshtml" />
+    <Content Include="Views\Yakin\GelenKutusu.cshtml" />
+    <Content Include="Views\Yakin\GelenMesajiYaz.cshtml" />
+    <Content Include="Views\Yakin\MesajYaz.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
