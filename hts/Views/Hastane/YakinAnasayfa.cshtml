@@ -6,7 +6,7 @@
 
 <p>
    
-    @Html.ActionLink("Yakın Ekle", "YakinOlusturma", new { id = ViewBag.Id }, new { @class = "btn btn-success btn-xs" })
+    @Html.ActionLink("Yakın Ekle", "YakinOlusturma", new { id = ViewBag.Id}, new { @class = "btn btn-success btn-xs" })
 </p>
 <table class="table" style="color:darkcyan">
     <tr>
@@ -23,6 +23,15 @@
             @Html.DisplayNameFor(model => model.adres)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.mail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kullaniciAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sifre)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.HastaTbhastaTc)
         </th>
         <th></th>
@@ -30,28 +39,37 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.doktorTb.adSoyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.adSoyad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefon)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.adres)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HastaTbhastaTc)
-            </td>
-            <td>
-                @Html.ActionLink("Düzenle", "YakinDuzenleme", new { id = item.yakinTc }, new { @class = "btn btn-warning btn-xs" })
-                @Html.ActionLink("Sil", "YakinSilme", new { id = item.yakinTc }, new { @class = "btn btn-danger btn-xs" })
-              
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.doktorTb.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adSoyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kullaniciAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sifre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HastaTbhastaTc)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "YakinDuzenleme", new { id = item.yakinTc, idMail=item.mail }, new { @class = "btn btn-warning btn-xs" })
+            @Html.ActionLink("Sil", "YakinSilme", new { id = item.yakinTc }, new { @class = "btn btn-danger btn-xs" })
+
+        </td>
+    </tr>
     }
 
 </table>

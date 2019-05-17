@@ -16,7 +16,7 @@ namespace hts.Entity
 
         public int? HastaTbhastaTc { get; set; }
 
-
+        
         public HastaTb hastaTb { get; set; }
 
         public BileklikTb()

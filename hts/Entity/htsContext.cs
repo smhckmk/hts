@@ -6,14 +6,14 @@ using System.Web;
 
 namespace hts.Entity
 {
-    public class htsContext:DbContext
+    public class htsContext : DbContext
     {
-        public htsContext():base("htsConnection")
+        public htsContext() : base("htsConnection")
         {
             Database.SetInitializer(new DataInitiliazer());
-           
+
         }
-       
+
         public DbSet<AcilDurumTb> AcilDurumlar { get; set; }
         public DbSet<BileklikTb> Bileklikler { get; set; }
         public DbSet<DoktorTb> Doktorlar { get; set; }
@@ -29,7 +29,6 @@ namespace hts.Entity
         public DbSet<DoktorMesajTb> DoktorMesaj { get; set; }
         public DbSet<YakinMesajTb> YakinMesaj { get; set; }
         public DbSet<YorumTb> Yorumlar { get; set; }
-
 
     }
 }

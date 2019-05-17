@@ -71,27 +71,10 @@ namespace hts.Controllers
 
                     return RedirectToAction("Anasayfa", "Yakin");
                 }
-                if (yakin.kullaniciAdi != dt.kullaniciAdi && yakin.sifre == dt.sifre)
-                {
-
-                    ViewBag.mesaj = "kullanıcı adı hatalı";
-                    return View();
-                }
-                if (yakin.kullaniciAdi == dt.kullaniciAdi && yakin.sifre != dt.sifre)
-                {
-
-                    ViewBag.mesaj = " sifre hatalı";
-                    return View();
-                }
-                if (yakin.kullaniciAdi != dt.kullaniciAdi && yakin.sifre != dt.sifre)
-                {
-
-                    ViewBag.mesaj = " kullanıcı ve sifre hatalı";
-                    return View();
-                }
 
             }
-           
+            ViewBag.mesaj = "kullanıcı adı hatalı";
+
 
             return View();
         }

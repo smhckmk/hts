@@ -21,9 +21,11 @@ namespace hts.Entity
         public string sifre { get; set; }
 
         public int? UzmanlikTbId { get; set; }
-
+       
         public List<PuanlamaTb> puanlar { get; set; }
-        public HastaneTb hastaneTb { get; set; }
+
+        public HastaneTb hastaneler{ get; set; }
+
         public UzmanlikTb uzmanlikTb { get; set; }
         public List<YakinTb> yakinlar { get; set; }
         public List<HastaTb> hastalar { get; set; }

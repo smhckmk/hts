@@ -80,6 +80,67 @@ namespace hts.Controllers
             return View(bileklikTb);
         }
 
+        //-------------------Doktor Mesaj İşlemleri------------------------
+
+        public ActionResult GelenKutusu()
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["doktorTc"]);
+            var doktor = dbContext.Doktorlar.Find(id);
+            ViewBag.adSoyad = doktor.adSoyad;
+
+            DoktorYakinHastaDoktorMesaj dyhm = new DoktorYakinHastaDoktorMesaj();
+
+            dyhm.doktorlar = dbContext.Doktorlar.Where(x => x.doktorTc == id).ToList();
+            dyhm.hastalar = dbContext.Hastalar.ToList();
+            dyhm.yakinlar = dbContext.Yakinlar.ToList();
+            dyhm.mesajlar = dbContext.DoktorMesaj.ToList();
+
+
+            return View(dyhm);
+        }
+
+        public ActionResult MesajYaz(int? yakinTc,int? did)
+        {
+            ViewBag.yakinTc = yakinTc;
+            var yakin = dbContext.Yakinlar.Find(yakinTc);
+            ViewBag.adSoyad = yakin.adSoyad;
+           
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult MesajYaz(string mesaaj,int yakinTc)
+        {
+            int id = 0;
+            id = Convert.ToInt32(Session["doktorTc"]);
+
+            DateTime tarih = DateTime.Now;
+            string tarihh = tarih.ToString();
+            YakinMesajTb mesaj = new YakinMesajTb();
+
+            if (ModelState.IsValid)
+            {
+                mesaj.DoktorTbdoktorTc = id;
+                mesaj.YakinTbyakinTc = yakinTc;
+                mesaj.mesaj = mesaaj;
+                mesaj.tarih = tarihh;
+                dbContext.YakinMesaj.Add(mesaj);
+
+                dbContext.SaveChanges();
+
+                return RedirectToAction("GelenKutusu", "Doktor");
+            }
+
+          
+            return View();
+            
+        }
+
+
+
         //-------------------Doktor Guncel Durum -------------------------
 
         public ActionResult GuncelDurum()
@@ -228,21 +289,9 @@ namespace hts.Controllers
 
                     return RedirectToAction("Anasayfa", "Doktor");
                 }
-                if (doktor.kullaniciAdi == dt.kullaniciAdi && doktor.sifre != dt.sifre)
+                else
                 {
-                    ViewBag.mesaj = "sifre hatalı";
-                    return View();
-                }
-
-                if (doktor.kullaniciAdi != dt.kullaniciAdi && doktor.sifre == dt.sifre)
-                {
-                    ViewBag.mesaj = "kullanıcı adı hatalı";
-                    return View();
-                }
-                if (doktor.kullaniciAdi != dt.kullaniciAdi && doktor.sifre != dt.sifre)
-                {
-                    ViewBag.mesaj = "kullanıcı ve sifre hatalı";
-                    return View();
+                    ViewBag.mesaj = "hatalı";
                 }
 
             }

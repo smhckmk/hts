@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,7 +12,7 @@ namespace hts.Entity
         public double puan { get; set; }
         public int DoktorTbDoktorTc { get; set; }
 
-
+        
         public DoktorTb doktorTc { get; set; }
         
     }

@@ -21,9 +21,10 @@ namespace hts.Entity
         public string parmakIzi { get; set; }
         public int DoktorTbdoktorTc { get; set; }
 
-        
+       
         public DoktorTb doktorTb { get; set; }
-        
+       
+       
         public List<GuncelOlcumTb> guncelOlcumler { get; set; }
         public List<AcilDurumTb> acilDurumlar { get; set; }
 

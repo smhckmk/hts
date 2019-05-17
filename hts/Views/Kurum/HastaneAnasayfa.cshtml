@@ -4,42 +4,41 @@
     Layout = "~/Views/Shared/KurumLayout.cshtml";
 }
 
-
-<p>
-    @Html.ActionLink("Hastane Ekle", "HastaneOlusturma", new { did = ViewBag.id }, new { @class = "btn btn-success btn-xs" })
-</p>
-<table class="table mt-3" style="color:darkcyan">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.kurumTb.kurumAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.hastaneAdi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.stoktakiBileklik)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adres)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="container">
+    <p>
+        @Html.ActionLink("Hastane Ekle", "HastaneOlusturma", new { did = ViewBag.id }, new { @class = "btn btn-success btn-xs" })
+    </p>
+    <table class="table mt-3" style="color:darkcyan">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.kurumTb.kurumAdi)
-            </td>
+
+            <th>
+                @Html.DisplayNameFor(model => model.hastaneAdi)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.telefon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.adres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.uyelik)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+
             <td>
                 @Html.DisplayFor(modelItem => item.hastaneAdi)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.stoktakiBileklik)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.telefon)
             </td>
@@ -47,11 +46,19 @@
                 @Html.DisplayFor(modelItem => item.adres)
             </td>
             <td>
-                @Html.ActionLink("Düzenle", "HastaneDuzenle", new { id = item.hastaneId }, new { @class = "btn btn-warning btn-xs" })
+                @Html.DisplayFor(modelItem => item.mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.uyelik)
+            </td>
+            <td>
+                @Html.ActionLink("Düzenle", "HastaneDuzenle", new { id = item.hastaneId, idMail = item.mail, uyelik=item.uyelik}, new { @class = "btn btn-warning btn-xs" })
                 @Html.ActionLink("Sil", "HastaneSilme", new { id = item.hastaneId }, new { @class = "btn btn-danger btn-xs" })
+                @Html.ActionLink("Detay", "HastaneDetay", new { id = item.hastaneId }, new { @class = "btn btn-info btn-xs" })
             </td>
         </tr>
-    }
+        }
 
-</table>
+    </table>
 
+</div>

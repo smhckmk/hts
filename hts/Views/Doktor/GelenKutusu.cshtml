@@ -1,0 +1,61 @@
+﻿@model hts.Models.DoktorYakinHastaDoktorMesaj
+@{
+    ViewBag.Title = "GelenKutusu";
+    Layout = "~/Views/Shared/DoktorLayout.cshtml";
+}
+
+<h2>GelenKutusu</h2>
+
+<table class="table table-striped" style="color:darkcyan">
+    <thead>
+        <tr>
+            <th>
+                Yakin Adı
+            </th>
+            <th>
+                Hasta Adı
+            </th>
+            <th>
+                Mesaj
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var doktor in Model.doktorlar)
+    {
+        foreach (var hasta in Model.hastalar)
+        {
+            foreach (var yakin in Model.yakinlar)
+            {
+                foreach (var mesaj in Model.mesajlar)
+                {
+                    if (doktor.doktorTc == hasta.DoktorTbdoktorTc && hasta.hastaTc == yakin.HastaTbhastaTc && mesaj.DoktorTbdoktorTc == doktor.doktorTc)
+                    {
+                        <tr>
+                            <td>
+                                @yakin.adSoyad
+                            </td>
+                            <td>
+                                @hasta.adSoyad
+                            </td>
+                            <td>
+                                @mesaj.mesaj
+                            </td>
+                            <td>
+
+                                @Html.ActionLink("Cevapla", "MesajYaz", new { yakinTc = yakin.yakinTc}, new { @class = "btn btn-warning btn-xs" })
+                            </td>
+                        </tr>
+                }
+
+            }
+        }
+    }
+}
+
+
+    </tbody>
+</table>
+

@@ -10,7 +10,7 @@ namespace hts.Entity
     {
         [Key]
         public int kurumId { get; set; }
-        public string kurumAdi { get; set; }       
+        public string kurumAdi { get; set; }      
         public string misyon { get; set; }
         public string subeler { get; set; }
         public string hizmetler { get; set; }

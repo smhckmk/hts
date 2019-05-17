@@ -7,13 +7,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Net;
+using System.Net.Mail;
 
 namespace hts.Controllers
 {
     public class KurumController : Controller
     {
         htsContext dbContext = new htsContext();
-
+        string mesaj;
         public ActionResult KurumAnasayfa()
         {
             var bileklikler = dbContext.Bileklikler.Include(b => b.hastaTb);
@@ -99,7 +100,7 @@ namespace hts.Controllers
             return View(bileklikTb);
         }
 
-        //---------------Doktor İslemleri-----------------------
+        //---------------Doktor İslemleri------------------------------------------------------------
         public ActionResult DoktorAnasayfa()
         {
             var doktorlar = dbContext.Doktorlar.Include(d => d.uzmanlikTb);
@@ -183,7 +184,7 @@ namespace hts.Controllers
             return View(doktorTb);
         }
 
-        //-----------------Hastane İşlemleri-------------------------
+        //-----------------Hastane İşlemleri------------------------------------------------------------
 
         public ActionResult HastaneAnasayfa()
         {
@@ -205,7 +206,7 @@ namespace hts.Controllers
             return View(hastaneTb);
         }
 
-        
+
         [HttpPost, ActionName("HastaneSilme")]
         [ValidateAntiForgeryToken]
         public ActionResult HastaneSilmeOnay(int id)
@@ -216,6 +217,22 @@ namespace hts.Controllers
             return RedirectToAction("HastaneAnasayfa");
         }
 
+        public ActionResult HastaneDetay(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HastaneTb hastaneTb = dbContext.Hastaneler.Find(id);
+            if (hastaneTb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hastaneTb);
+        }
+
+
+
         public ActionResult HastaneOlusturma()
         {
             ViewBag.KurumTbkurumId = new SelectList(dbContext.Kurumlar, "kurumId", "kurumAdi");
@@ -225,7 +242,7 @@ namespace hts.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaneOlusturma([Bind(Include = "hastaneId,hastaneAdi,stoktakiBileklik,telefon,adres,KurumTbkurumId")] HastaneTb hastaneTb)
+        public ActionResult HastaneOlusturma([Bind(Include = "hastaneId,hastaneAdi,telefon,adres,mail,kullaniciAdi,sifre,uyelik,KurumTbkurumId")] HastaneTb hastaneTb)
         {
             if (ModelState.IsValid)
             {
@@ -237,6 +254,7 @@ namespace hts.Controllers
             ViewBag.KurumTbkurumId = new SelectList(dbContext.Kurumlar, "kurumId", "kurumAdi", hastaneTb.KurumTbkurumId);
             return View(hastaneTb);
         }
+
 
         public ActionResult HastaneDuzenle(int? id)
         {
@@ -256,12 +274,45 @@ namespace hts.Controllers
      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult HastaneDuzenle([Bind(Include = "hastaneId,hastaneAdi,stoktakiBileklik,telefon,adres,KurumTbkurumId")] HastaneTb hastaneTb)
+        public ActionResult HastaneDuzenle([Bind(Include = "hastaneId,hastaneAdi,telefon,adres,mail,kullaniciAdi,sifre,uyelik,KurumTbkurumId")] HastaneTb hastaneTb,int id,string idMail,bool uyelik)
         {
             if (ModelState.IsValid)
             {
                 dbContext.Entry(hastaneTb).State = EntityState.Modified;
                 dbContext.SaveChanges();
+
+                MailMessage msj = new MailMessage();
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("semihcakmak7126@gmail.com", "merve0804semih.");
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                msj.From = new MailAddress("semihcakmak7126@gmail.com", "merve0804semih.");
+                msj.To.Add(idMail);
+
+                if (uyelik == true)
+                {
+                    var yeniHastane = dbContext.Hastaneler.Where(i => i.hastaneId == id).ToList();
+                    foreach (var item in yeniHastane)
+                    {
+                        mesaj = " Sisteme Başarı ile Kayıt Edildiniz. Kullanıcı Adınız ve Sifreniz ile sisteme giriş yapabilirsiniz\n" + item.kullaniciAdi + " ," + item.sifre;
+                    }
+                    msj.Subject = "Üyelik Hakkında";
+
+                    msj.Body = mesaj;
+
+                    client.Send(msj);
+                }
+                else
+                {
+                    mesaj = "Degerlendirmelerimiz Sonucunda Sisteme Uyelik Talebiniz Olumsuz olarak sonuclanmıştır. İyi Günler Dileriz.";
+                    msj.Subject = "Uyelik Hakkında";
+
+                    msj.Body = mesaj;
+
+                    client.Send(msj);
+                }
+
                 return RedirectToAction("HastaneAnasayfa");
             }
             ViewBag.KurumTbkurumId = new SelectList(dbContext.Kurumlar, "kurumId", "kurumAdi", hastaneTb.KurumTbkurumId);
@@ -269,6 +320,7 @@ namespace hts.Controllers
         }
 
 
+        //-------------------------------Kurum Giris----------------------------------------------------
 
         public ActionResult KurumGiris()
         {
@@ -293,23 +345,9 @@ namespace hts.Controllers
 
                     return RedirectToAction("KurumAnasayfa", "Kurum");
                 }
-                if (kurum.kullaniciAdi != dt.kullaniciAdi && kurum.sifre == dt.sifre)
+                else
                 {
-                    //Session["yakinTc"] = kurum.yakinTc;
-                    ViewBag.mesaj = "hatalı kullanıcı girişi";
-                    return View();
-                }
-                if (kurum.kullaniciAdi == dt.kullaniciAdi && kurum.sifre != dt.sifre)
-                {
-                    //Session["yakinTc"] = kurum.yakinTc;
-                    ViewBag.mesaj = "hatalı sifre girisi";
-                    return View();
-                }
-                if (kurum.kullaniciAdi != dt.kullaniciAdi && kurum.sifre != dt.sifre)
-                {
-                    //Session["yakinTc"] = kurum.yakinTc;
                     ViewBag.mesaj = "kullanıcı ve sifre hatalı";
-                    return View();
                 }
 
             }
