@@ -26,13 +26,13 @@
         @foreach (var mesaj in Model.mesajlar)
         {
 
-            foreach (var doktor in Model.doktorlar)
+            foreach (var yakin in Model.yakinlar)
             {
                 foreach (var hasta in Model.hastalar)
                 {
-                    foreach (var yakin in Model.yakinlar)
+                    foreach (var doktor in Model.doktorlar)
                     {
-                        if (mesaj.DoktorTbdoktorTc == doktor.doktorTc && yakin.HastaTbhastaTc == hasta.hastaTc && hasta.DoktorTbdoktorTc == doktor.doktorTc)
+                        if (mesaj.YakinTbyakinTc == yakin.yakinTc && yakin.HastaTbhastaTc == hasta.hastaTc && hasta.DoktorTbdoktorTc == doktor.doktorTc)
                         {
 
                             <tr>
